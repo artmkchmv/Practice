@@ -36,13 +36,13 @@ public class LinkedListTabulatedFunction {
         }
     }
     LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (xTo > xFrom) {
+        if (xTo - xFrom < 1e-9) {
             double epsilon = (xTo - xFrom) / (count - 1);
             for (int i = 0; i < count; i++) {
                 addNode((xFrom + i * epsilon), source.apply(xFrom + i * epsilon));
             }
         }
-        else if (xFrom > xTo) {
+        else if (xFrom - xTo < 1e-9) {
             double epsilon = (xFrom - xTo) / (count - 1);
             for (int i = 0; i < count; i++) {
                 addNode((xTo + i * epsilon), source.apply(xTo + i * epsilon));
