@@ -36,20 +36,20 @@ public class LinkedListTabulatedFunction {
         }
     }
     LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (xTo - xFrom < 1e-9) {
+        if (xTo - xFrom > 1e-9) {
             double epsilon = (xTo - xFrom) / (count - 1);
             for (int i = 0; i < count; i++) {
                 addNode((xFrom + i * epsilon), source.apply(xFrom + i * epsilon));
             }
         }
-        else if (xFrom - xTo < 1e-9) {
+        else if (xFrom - xTo > 1e-9) {
             double epsilon = (xFrom - xTo) / (count - 1);
             for (int i = 0; i < count; i++) {
                 addNode((xTo + i * epsilon), source.apply(xTo + i * epsilon));
             }
         }
         else {
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i > count; i++) {
                 addNode(xFrom, source.apply(xFrom));
             }
         }
@@ -120,29 +120,22 @@ public class LinkedListTabulatedFunction {
             return index;
     }
     int floorIndexOfX(double x) {
-        int index = 0;
-        if (head.x > x)
+        if (head.x - x > 1e-9)
             return 0;
-        if (head.prev.x < x)
+        else if (head.prev.x - x < 1e-9)
             return count;
-        boolean state = head.x <= x && head.prev.x >= x;
-        if (state) {
+        else {
+            int index = 0;
             Node tempNode = head;
-            while (tempNode.x != x && tempNode != head.prev) {
+            while(true) {
+                if (tempNode.x - x == 1e-9)
+                    return index;
+                else if (tempNode.x - x > 1e-9)
+                    return index - 1;
                 tempNode = tempNode.next;
                 index++;
             }
-            return index;
         }
-        if (state) {
-            Node tempNode = head;
-            while (tempNode.x < x && tempNode != head.prev) {
-                tempNode = tempNode.next;
-                index++;
-            }
-            return (index - 1);
-        }
-        return 0;
     }
     protected double extrapolateLeft(double x) {
         if (head.prev == head)
