@@ -1,6 +1,6 @@
 import myfirstpackage.*;
 
-class MyFirstClass {
+class MyFirstClass4 {
   public static void main(String[] args) {
     myfirstpackage o = new myfirstpackage();
     System.out.println(o.divide());

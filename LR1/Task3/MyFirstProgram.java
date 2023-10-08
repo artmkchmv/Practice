@@ -33,7 +33,7 @@ class MySecondClass {
   }
 }
 
-class MyFirstClass {
+class MyFirstClass3 {
 
   public static void main(String[] args) {
     MySecondClass o = new MySecondClass();
