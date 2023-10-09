@@ -123,7 +123,7 @@ public class LinkedListTabulatedFunction {
         if (head.x - x > 1e-9)
             return 0;
         else if (head.prev.x - x < 1e-9)
-            return count;
+            return count - 1;
         else {
             int index = 0;
             Node tempNode = head;
