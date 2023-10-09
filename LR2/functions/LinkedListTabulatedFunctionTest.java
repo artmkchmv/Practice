@@ -56,4 +56,28 @@ public class LinkedListTabulatedFunctionTest {
         int result = list.floorIndexOfX(6);
         assertEquals(4, result, 1e-9);
     }
+
+    @Test
+    public void testextrapolateLeft() {
+        double result = list.extrapolateLeft(1.5);
+        assertEquals(6.1, result, 1e-9);
+    }
+
+    @Test
+    public void testextrapolateRight() {
+        double result = list.extrapolateRight(5.9);
+        assertEquals(10.5, result, 1e-9);
+    }
+
+    @Test
+    public void testinterpolate2() {
+        double result = list.interpolate(3.7, 2);
+        assertEquals(8.3, result, 1e-9);
+    }
+
+    @Test
+    public void testinterpolate5() {
+        double result = list.interpolate(5.3, 4.8, 5.9, 9.4, 10.5);
+        assertEquals(9.9, result, 1e-9);
+    }
 }
