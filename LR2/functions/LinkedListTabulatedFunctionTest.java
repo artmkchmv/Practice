@@ -53,7 +53,7 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testfloorIndexOfX() {
-        int result = list.floorIndexOfX(3);
-        assertEquals(1, result, 1e-9);
+        int result = list.floorIndexOfX(6);
+        assertEquals(4, result, 1e-9);
     }
 }
