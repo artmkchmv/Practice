@@ -1,4 +1,4 @@
-package LR2.functions;
+package Lab2.functions;
 
 import java.util.Arrays;
 
@@ -9,12 +9,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private final double[] xValues;
     private final double[] yValues;
     protected int count;
-    ArrayTabulatedFunction(double[] xValues, double[] yValues ){
+    public ArrayTabulatedFunction(double[] xValues, double[] yValues ){
         this.xValues = Arrays.copyOf(xValues, xValues.length);
         this.yValues = Arrays.copyOf(yValues, yValues.length);
         count = xValues.length;
     }
-    ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count){
+    public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count){
         xValues = new double[count];
         yValues = new double[count];
         double epsilon;
@@ -85,7 +85,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    protected int floorIndexOfX(double x) {
+    public int floorIndexOfX(double x) {
         int i = 0;
         if (xValues[i] - x > 1e-9)
             return 0;

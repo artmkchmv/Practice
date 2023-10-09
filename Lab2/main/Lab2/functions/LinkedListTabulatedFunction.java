@@ -1,17 +1,17 @@
-package LR2.functions;
+package Lab2.functions;
 
 class Node {
     public Node next;
     public Node prev;
-    double x;
-    double y;
+    public double x;
+    public double y;
     Node(double x, double y) {
         this.x = x;
         this.y = y;
     }
 }
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     protected int count;
     private Node head;
     private void addNode(double x, double y) {
@@ -30,12 +30,12 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         count++;
     }
-    LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+    public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; i++) {
             addNode(xValues[i], yValues[i]);
         }
     }
-    LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (xTo - xFrom > 1e-9) {
             double epsilon = (xTo - xFrom) / (count - 1);
             for (int i = 0; i < count; i++) {

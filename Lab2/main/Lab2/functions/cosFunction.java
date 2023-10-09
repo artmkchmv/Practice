@@ -1,8 +1,8 @@
-package LR2.functions;
+package Lab2.functions;
 
 import static java.lang.Math.cos;
 
-class cosFunction implements MathFunction {
+public class cosFunction implements MathFunction {
     public double apply(double x) {
         return cos(x);
     }

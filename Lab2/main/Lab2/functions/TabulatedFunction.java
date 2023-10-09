@@ -1,4 +1,4 @@
-package LR2.functions;
+package Lab2.functions;
 
 interface TabulatedFunction extends MathFunction {
     int getCount();

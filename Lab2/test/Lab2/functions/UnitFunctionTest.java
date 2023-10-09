@@ -1,14 +1,14 @@
-package LR2.functions;
+package Lab2.functions;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ZeroFunctionTest {
+class UnitFunctionTest {
     @Test
     public void testConstantFunction_1() throws Exception {
-        ZeroFunction func = new ZeroFunction();
+        UnitFunction func = new UnitFunction();
         double result = func.apply(0.4);
-        assertEquals(0.0, result, 1e-9);
+        assertEquals(1, result, 1e-9);
     }
 }

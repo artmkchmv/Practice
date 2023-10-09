@@ -1,8 +1,8 @@
-package LR2.functions;
+package Lab2.functions;
 
 import static java.lang.Math.tan;
 
-class tgFunction implements MathFunction {
+public class tgFunction implements MathFunction {
     public double apply(double x) {
         return tan(x);
     }

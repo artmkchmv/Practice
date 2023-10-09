@@ -1,5 +1,4 @@
-package LR2.functions;
-
+package Lab2.functions;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,25 +58,25 @@ class ArrayTabulatedFunctionTest {
     }
 
     @Test
-    public void testextrapolateLeft() throws Exception{
+    public void testextrapolateLeft() throws Exception {
         double result = arr.extrapolateLeft(7.0);
         assertEquals(12.5, result, 1e-9);
     }
 
     @Test
-    public void testextrapolateRight() throws Exception{
+    public void testextrapolateRight() throws Exception {
         double result = arr.extrapolateRight(7.0);
         assertEquals(12.5, result, 1e-9);
     }
 
     @Test
-    public void testinterpolate2() throws Exception{
+    public void testinterpolate2() throws Exception {
         double result = arr.interpolate(3.7, 2);
         assertEquals(9.2, result, 1e-9);
     }
 
     @Test
-    public void testinterpolate5() throws Exception{
+    public void testinterpolate5() throws Exception {
         double result = arr.interpolate(5.3, 4.8, 5.9, 9.4, 10.5);
         assertEquals(9.9, result, 1e-9);
     }

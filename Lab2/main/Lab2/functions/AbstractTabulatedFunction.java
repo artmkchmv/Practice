@@ -1,4 +1,4 @@
-package LR2.functions;
+package Lab2.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     abstract protected int floorIndexOfX(double x);

@@ -1,5 +1,4 @@
-package LR2.functions;
-
+package Lab2.functions;
 
 import org.junit.jupiter.api.Test;
 
