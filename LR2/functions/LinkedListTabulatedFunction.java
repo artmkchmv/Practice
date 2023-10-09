@@ -93,7 +93,7 @@ public class LinkedListTabulatedFunction {
             index++;
         }
         if (tempNode == head.prev) {
-            if (tempNode.x == x) {
+            if (Math.abs(tempNode.x - x) == 1e-9) {
                 return index;
             }
             else
@@ -120,17 +120,17 @@ public class LinkedListTabulatedFunction {
             return index;
     }
     int floorIndexOfX(double x) {
-        if (head.x - x > 1e-9)
+        if (Math.abs(head.x - x) > 1e-9)
             return 0;
-        else if (head.prev.x - x < 1e-9)
+        else if (Math.abs(head.prev.x - x) < 1e-9)
             return count - 1;
         else {
             int index = 0;
             Node tempNode = head;
             while(true) {
-                if (tempNode.x - x == 1e-9)
+                if (Math.abs(tempNode.x - x) == 1e-9)
                     return index;
-                else if (tempNode.x - x > 1e-9)
+                else if (Math.abs(tempNode.x - x) > 1e-9)
                     return index - 1;
                 tempNode = tempNode.next;
                 index++;
