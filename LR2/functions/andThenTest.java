@@ -1,5 +1,8 @@
-package Lab2.functions;
+package LR2.functions;
 
+import LR2.functions.SqrFunction;
+import LR2.functions.cosFunction;
+import LR2.functions.tgFunction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

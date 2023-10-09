@@ -1,4 +1,4 @@
-package Lab2.functions;
+package LR2.functions;
 
 import static java.lang.Math.pow;
 

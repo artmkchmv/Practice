@@ -1,4 +1,4 @@
-package Lab2.functions;
+package LR2.functions;
 
 public class CompositeFunction implements MathFunction {
     private MathFunction firstFunction;

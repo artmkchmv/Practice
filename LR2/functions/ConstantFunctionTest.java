@@ -1,5 +1,6 @@
-package Lab2.functions;
+package LR2.functions;
 
+import LR2.functions.ConstantFunction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

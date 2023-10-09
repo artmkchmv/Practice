@@ -1,5 +1,8 @@
-package Lab2.functions;
+package LR2.functions;
 
+import LR2.functions.CompositeFunction;
+import LR2.functions.IdentifyFunction;
+import LR2.functions.cosFunction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
