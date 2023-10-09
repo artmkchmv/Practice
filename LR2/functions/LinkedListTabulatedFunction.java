@@ -168,6 +168,19 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     }
     @Override
     public double apply(double x) {
-        return 0;
+        if (head.x - x > 1e-9){
+            return extrapolateLeft(x);
+        }
+        else if (x - head.prev.x > 1e-9) {
+            return extrapolateRight(x);
+        }
+        else {
+            if (indexOfX(x) != -1) {
+                return getY(indexOfX(x));
+            }
+            else {
+                return interpolate(x, floorIndexOfX(x));
+            }
+        }
     }
 }
