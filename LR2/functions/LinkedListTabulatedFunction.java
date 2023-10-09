@@ -11,7 +11,7 @@ class Node {
     }
 }
 
-public class LinkedListTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction {
     protected int count;
     private Node head;
     private void addNode(double x, double y) {
@@ -54,13 +54,13 @@ public class LinkedListTabulatedFunction {
             }
         }
     }
-    int getCount() {
+    public int getCount() {
         return count;
     }
-    double leftBound() {
+    public double leftBound() {
         return head.x;
     }
-    double rightBound() {
+    public double rightBound() {
         return head.prev.x;
     }
     private Node getNode(int index) {
@@ -76,16 +76,16 @@ public class LinkedListTabulatedFunction {
             return tempNode;
         }
     }
-    double getX(int index) {
+    public double getX(int index) {
         return getNode(index).x;
     }
-    double getY(int index) {
+    public double getY(int index) {
         return getNode(index).y;
     }
-    void setY(int index, double y) {
+    public void setY(int index, double y) {
         this.getNode(index).y = y;
     }
-    int indexOfX(double x) {
+    public int indexOfX(double x) {
         Node tempNode = head;
         int index = 0;
         while (tempNode.x != x && tempNode != head.prev) {
@@ -93,7 +93,7 @@ public class LinkedListTabulatedFunction {
             index++;
         }
         if (tempNode == head.prev) {
-            if (Math.abs(tempNode.x - x) == 1e-9) {
+            if (tempNode.x - x == 1e-9) {
                 return index;
             }
             else
@@ -102,7 +102,7 @@ public class LinkedListTabulatedFunction {
         else
             return index;
     }
-    int indexOfY(double y) {
+    public int indexOfY(double y) {
         Node tempNode = head;
         int index = 0;
         while (tempNode.y != y && tempNode != head.prev) {
@@ -119,19 +119,19 @@ public class LinkedListTabulatedFunction {
         else
             return index;
     }
-    int floorIndexOfX(double x) {
-        if (Math.abs(head.x - x) > 1e-9)
+    public int floorIndexOfX(double x) {
+        if (head.x - x > 1e-9)
             return 0;
-        else if (Math.abs(head.prev.x - x) < 1e-9)
+        else if (head.prev.x - x < 1e-9)
             return count - 1;
         else {
             int index = 0;
             Node tempNode = head;
             while(true) {
-                if (Math.abs(tempNode.x - x) == 1e-9)
+                if (tempNode.x - x == 1e-9)
                     return index;
-                else if (Math.abs(tempNode.x - x) > 1e-9)
-                    return index - 1;
+                else if (tempNode.x - x > 1e-9)
+                    return (index - 1);
                 tempNode = tempNode.next;
                 index++;
             }
@@ -165,5 +165,9 @@ public class LinkedListTabulatedFunction {
             return head.y;
         else
             return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+    }
+    @Override
+    public double apply(double x) {
+        return 0;
     }
 }
