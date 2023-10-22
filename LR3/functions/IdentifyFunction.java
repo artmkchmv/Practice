@@ -14,9 +14,7 @@ public class IdentifyFunction implements MathFunction {
         return this.getClass().hashCode();
     }
     @Override public Object clone(){
-        IdentifyFunction copy = new IdentifyFunction();
-        copy = this;
-        return copy;
+        return new IdentifyFunction();
     }
 }
 
