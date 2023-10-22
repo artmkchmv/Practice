@@ -1,7 +1,7 @@
 package LR3.functions;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
-    private static class Node {
+    protected static class Node {
         public Node next;
         public Node prev;
         public double x;
@@ -9,6 +9,32 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         Node(double x, double y) {
             this.x = x;
             this.y = y;
+        }
+        @Override
+        public String toString() {
+            return "(" + x + "; " + y + ")";
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            return ((this.getClass() == o.getClass()) && (x == ((LinkedListTabulatedFunction.Node)o).x) && (y == ((LinkedListTabulatedFunction.Node)o).y));
+        }
+        @Override
+        public int hashCode() {
+            int total = 31;
+            long new_x = Double.doubleToLongBits(x);
+            long new_y = Double.doubleToLongBits(y);
+            total = 31 * total + (int)(new_x ^ (new_x >>> 32));
+            total = 31 * total + (int)(new_y ^ (new_y >>> 32));
+            return total;
+        }
+        @Override
+        public Object clone() {
+            Node tempNode = new Node(x, y);
+            tempNode.prev = this.prev;
+            tempNode.next = this.next;
+            return tempNode;
         }
     }
     protected int count;
