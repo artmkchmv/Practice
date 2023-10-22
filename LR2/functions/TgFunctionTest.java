@@ -1,16 +1,14 @@
 package LR2.functions;
 
-import LR2.functions.MathFunction;
-import LR2.functions.tgFunction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class tgFunctionTest {
+class TgFunctionTest {
 
     @Test
-    public void testtgFunction() throws Exception {
-        MathFunction func = new tgFunction();
+    public void testTgFunction() throws Exception {
+        MathFunction func = new TgFunction();
         double result = func.apply(Math.PI / 4);
         assertEquals(1, result, 1e-9);
     }

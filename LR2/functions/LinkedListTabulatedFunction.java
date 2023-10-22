@@ -1,17 +1,16 @@
 package LR2.functions;
 
-class Node {
-    public Node next;
-    public Node prev;
-    public double x;
-    public double y;
-    Node(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+    private static class Node {
+        public Node next;
+        public Node prev;
+        public double x;
+        public double y;
+        Node(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
     protected int count;
     private Node head;
     private void addNode(double x, double y) {
