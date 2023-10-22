@@ -208,4 +208,60 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             }
         }
     }
+    @Override
+    public String toString() {
+        String result = "";
+        Node tempNode = head;
+        while (tempNode != head.prev) {
+            result += "(" + tempNode.x + "; " + tempNode.y + ")" + ", ";
+            tempNode = tempNode.next;
+        }
+        result += "(" + head.prev.x + "; " + head.prev.y + ")";
+        return result;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (this.getClass() != o.getClass())
+            return false;
+        LinkedListTabulatedFunction new_list =  (LinkedListTabulatedFunction) o;
+        if (this.count != new_list.count)
+            return false;
+        Node tempNode_1 = head;
+        Node tempNode_2 = new_list.head;
+        for (int i = 0; i < count; i++) {
+            if (tempNode_1.x != tempNode_2.x || tempNode_1.y != tempNode_2.y)
+                return false;
+        }
+        return true;
+    }
+    @Override
+    public int hashCode() {
+        int total = 31;
+        Node tempNode = head;
+        while (tempNode != head.prev) {
+            total = 31 * total + tempNode.hashCode();
+            tempNode = tempNode.next;
+        }
+        total = 31 * total + head.prev.hashCode();
+        return total;
+    }
+    @Override
+    public Object clone() {
+        double[] xValues = new double[this.count];
+        double[] yValues = new double[this.count];
+        int i = 0;
+        Node tempNode = head;
+        while (tempNode != head.prev) {
+            xValues[i] = tempNode.x;
+            yValues[i] = tempNode.y;
+            tempNode = tempNode.next;
+            i++;
+        }
+        xValues[this.count - 1] = head.prev.x;
+        yValues[this.count - 1] = head.prev.y;
+        LinkedListTabulatedFunction tempList = new LinkedListTabulatedFunction(xValues, yValues);
+        return tempList;
+    }
 }
