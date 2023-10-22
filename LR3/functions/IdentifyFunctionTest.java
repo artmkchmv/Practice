@@ -26,7 +26,7 @@ class IdentifyFunctionTest {
     }
 
     @Test
-    void CloneTest() {
+    void CloneTest() throws Exception{
         IdentifyFunction fun1 = new IdentifyFunction();
         Object fun2 = fun1.clone();
         assertTrue(fun1.equals(fun2));
