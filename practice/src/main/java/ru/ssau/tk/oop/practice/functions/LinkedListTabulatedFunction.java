@@ -63,12 +63,16 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2)
+            throw new IllegalArgumentException("table length is less than the required minimum");
         for (int i = 0; i < xValues.length; i++) {
             addNode(xValues[i], yValues[i]);
         }
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count < 2)
+            throw new IllegalArgumentException("table length is less than the required minimum");
         if (xTo - xFrom > 1e-9) {
             double epsilon = (xTo - xFrom) / (count - 1);
             for (int i = 0; i < count; i++) {
@@ -99,6 +103,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     private Node getNode(int index) {
+        if (index < 0 || index >= count)
+            throw new IllegalArgumentException("incorrect index value");
         if (index == 0) {
             return head;
         } else {
@@ -112,14 +118,20 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public double getX(int index) {
+        if (index < 0 || index >= count)
+            throw new IllegalArgumentException("incorrect index value");
         return getNode(index).x;
     }
 
     public double getY(int index) {
+        if (index < 0 || index >= count)
+            throw new IllegalArgumentException("incorrect index value");
         return getNode(index).y;
     }
 
     public void setY(int index, double y) {
+        if (index < 0 || index >= count)
+            throw new IllegalArgumentException("incorrect index value");
         this.getNode(index).y = y;
     }
 
@@ -156,6 +168,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public int floorIndexOfX(double x) {
+        if (x < leftBound())
+            throw new IllegalArgumentException("x is less than the left bound");
         if (head.x - x > 1e-9)
             return 0;
         else if (head.prev.x - x < 1e-9)
@@ -189,22 +203,15 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        if (head.prev == head)
-            return head.y;
-        else {
-            double rightX = getX(floorIndex);
-            double leftX = getX(floorIndex - 1);
-            double rightY = getY(floorIndex);
-            double leftY = getY(floorIndex - 1);
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
-        }
+        double rightX = getX(floorIndex);
+        double leftX = getX(floorIndex - 1);
+        double rightY = getY(floorIndex);
+        double leftY = getY(floorIndex - 1);
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
-        if (head.prev == head)
-            return head.y;
-        else
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     @Override

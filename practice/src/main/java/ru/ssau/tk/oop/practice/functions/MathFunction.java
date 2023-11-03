@@ -6,5 +6,4 @@ public interface MathFunction {
     default CompositeFunction andThen(MathFunction afterFunction) {
         return new CompositeFunction(afterFunction, this);
     }
-
 }
