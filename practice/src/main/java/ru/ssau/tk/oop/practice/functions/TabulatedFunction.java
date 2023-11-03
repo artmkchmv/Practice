@@ -1,6 +1,6 @@
 package ru.ssau.tk.oop.practice.functions;
 
-interface TabulatedFunction extends MathFunction {
+interface TabulatedFunction extends MathFunction, Iterable<Point> {
     int getCount();
 
     double getX(int index);

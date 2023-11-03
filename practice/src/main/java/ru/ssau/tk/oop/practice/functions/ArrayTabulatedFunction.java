@@ -1,6 +1,7 @@
 package ru.ssau.tk.oop.practice.functions;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
@@ -178,4 +179,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         return copy;
     }
 
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
+    }
 }

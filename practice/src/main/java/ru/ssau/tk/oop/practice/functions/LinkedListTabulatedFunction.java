@@ -1,5 +1,7 @@
 package ru.ssau.tk.oop.practice.functions;
 
+import java.util.Iterator;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     protected static class Node {
         public Node next;
@@ -287,5 +289,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         yValues[this.count - 1] = head.prev.y;
         LinkedListTabulatedFunction tempList = new LinkedListTabulatedFunction(xValues, yValues);
         return tempList;
+    }
+
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
     }
 }
