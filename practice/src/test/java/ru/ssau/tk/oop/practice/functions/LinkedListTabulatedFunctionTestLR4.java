@@ -1,8 +1,11 @@
 package ru.ssau.tk.oop.practice.functions;
 
+import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,5 +87,45 @@ class LinkedListTabulatedFunctionTestLR4 {
     public void testinterpolate2() throws Exception {
         double result = list.interpolate(5.3, 4.8, 5.9, 9.4, 10.5);
         assertEquals(9.9, result, 1e-9);
+    }
+
+    @Test
+    public void testiterator1() throws Exception {
+        Iterator<Point> iterator = list.iterator();
+        LinkedListTabulatedFunction.Node node = list.getNode(0);
+        double sum_node_x = 0;
+        double sum_node_y = 0;
+        double sum_point_x = 0;
+        double sum_point_y = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            sum_node_x += node.x;
+            sum_point_x += point.x;
+            sum_node_y += point.y;
+            sum_point_y += point.y;
+            node = node.next;
+        }
+        assertEquals(sum_node_x, sum_point_x, 1e-9);
+        assertEquals(sum_node_y, sum_point_y, 1e-9);
+    }
+
+    @Test
+    public void testiterator2() throws Exception {
+        Iterator<Point> iterator = list.iterator();
+        LinkedListTabulatedFunction.Node node = list.getNode(0);
+        double sum_node_x = 0;
+        double sum_node_y = 0;
+        double sum_point_x = 0;
+        double sum_point_y = 0;
+        for (Point point : list) {
+            point = iterator.next();
+            sum_node_x += node.x;
+            sum_point_x += point.x;
+            sum_node_y += point.y;
+            sum_point_y += point.y;
+            node = node.next;
+        }
+        assertEquals(sum_node_x, sum_point_x, 1e-9);
+        assertEquals(sum_node_y, sum_point_y, 1e-9);
     }
 }

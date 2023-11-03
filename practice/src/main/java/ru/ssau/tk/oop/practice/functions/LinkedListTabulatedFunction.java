@@ -1,6 +1,7 @@
 package ru.ssau.tk.oop.practice.functions;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     protected static class Node {
@@ -104,7 +105,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return head.prev.x;
     }
 
-    private Node getNode(int index) {
+    protected Node getNode(int index) {
         if (index < 0 || index >= count)
             throw new IllegalArgumentException("incorrect index value");
         if (index == 0) {
@@ -292,6 +293,22 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException();
+        return new Iterator<Point>() {
+            private Node node = head;
+
+            @Override
+            public boolean hasNext() {
+                return (node.next != head);
+            }
+
+            @Override
+            public Point next() {
+                if (hasNext()) {
+                    Point point = new Point(node.x, node.y);
+                    node = node.next;
+                    return point;
+                } else throw new NoSuchElementException();
+            }
+        };
     }
 }
