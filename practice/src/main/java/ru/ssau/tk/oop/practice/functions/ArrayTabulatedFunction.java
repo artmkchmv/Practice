@@ -131,22 +131,15 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1)
-            return yValues[0];
-        else {
-            double rightX = getX(floorIndex);
-            double leftX = getX(floorIndex - 1);
-            double rightY = getY(floorIndex);
-            double leftY = getY(floorIndex - 1);
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
-        }
+        double rightX = getX(floorIndex);
+        double leftX = getX(floorIndex - 1);
+        double rightY = getY(floorIndex);
+        double leftY = getY(floorIndex - 1);
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
-        if (count == 1)
-            return yValues[0];
-        else
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     @Override
