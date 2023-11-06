@@ -15,6 +15,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (xValues.length < 2 || yValues.length < 2)
             throw new IllegalArgumentException("table length is less than the required minimum");
         else {
+            checkLengthIsTheSame(xValues,yValues);
+            checkSorted(xValues);
+            checkSorted(yValues);
+
             this.xValues = Arrays.copyOf(xValues, xValues.length);
             this.yValues = Arrays.copyOf(yValues, yValues.length);
             count = xValues.length;
@@ -96,8 +100,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public int floorIndexOfX(double x) {
-        if (x < leftBound())
-            throw new IllegalArgumentException("x is less than the left bound");
         int i = 0;
         if (xValues[i] - x > 1e-9)
             return 0;
@@ -129,15 +131,22 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        double rightX = getX(floorIndex);
-        double leftX = getX(floorIndex - 1);
-        double rightY = getY(floorIndex);
-        double leftY = getY(floorIndex - 1);
-        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        if (count == 1)
+            return yValues[0];
+        else {
+            double rightX = getX(floorIndex);
+            double leftX = getX(floorIndex - 1);
+            double rightY = getY(floorIndex);
+            double leftY = getY(floorIndex - 1);
+            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        }
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
-        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        if (count == 1)
+            return yValues[0];
+        else
+            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     @Override
