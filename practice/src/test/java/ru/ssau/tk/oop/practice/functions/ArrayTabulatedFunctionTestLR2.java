@@ -71,8 +71,8 @@ class ArrayTabulatedFunctionTestLR2 {
 
     @Test
     public void testinterpolate2() throws Exception {
-        double result = arr.interpolate(3.7, 2);
-        assertEquals(9.2, result, 1e-9);
+        double result = arr.interpolate(8.3, 2);
+        assertEquals(13.8, result, 1e-9);
     }
 
     @Test

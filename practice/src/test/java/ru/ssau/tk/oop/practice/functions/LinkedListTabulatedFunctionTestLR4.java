@@ -1,8 +1,9 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import org.junit.jupiter.api.Assertions;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.Iterator;
 
