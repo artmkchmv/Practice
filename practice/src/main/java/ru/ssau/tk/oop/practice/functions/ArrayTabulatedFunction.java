@@ -1,5 +1,7 @@
 package ru.ssau.tk.oop.practice.functions;
 
+import ru.ssau.tk.oop.practice.exceptions.InterpolationException;
+
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -15,7 +17,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (xValues.length < 2 || yValues.length < 2)
             throw new IllegalArgumentException("table length is less than the required minimum");
         else {
-            checkLengthIsTheSame(xValues,yValues);
+            checkLengthIsTheSame(xValues, yValues);
             checkSorted(xValues);
             checkSorted(yValues);
 
@@ -131,11 +133,16 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        double rightX = getX(floorIndex);
-        double leftX = getX(floorIndex - 1);
-        double rightY = getY(floorIndex);
-        double leftY = getY(floorIndex - 1);
-        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+
+        if (getX(floorIndex-1)<x && x< getX(floorIndex)) {
+            double rightX = getX(floorIndex);
+            double leftX = getX(floorIndex - 1);
+            double rightY = getY(floorIndex);
+            double leftY = getY(floorIndex - 1);
+            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        }
+        else
+            throw new InterpolationException("X is not in the interval");
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
