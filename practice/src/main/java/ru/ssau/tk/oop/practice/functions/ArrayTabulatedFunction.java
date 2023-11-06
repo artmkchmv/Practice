@@ -192,6 +192,22 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException();
+        return new Iterator<Point>() {
+            private int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return (i < count);
+            }
+
+            @Override
+            public Point next() {
+                if (hasNext()) {
+                    Point point = new Point(xValues[i], yValues[i]);
+                    ++i;
+                    return point;
+                } else throw new UnsupportedOperationException();
+            }
+        };
     }
 }
