@@ -57,7 +57,7 @@ public class TabulatedDifferentialOperatorTest {
         assertEquals(9, derivative_function.getY(4));
     }
 
-/*    @Test
+    @Test
     public void testderive2() throws Exception {
         ArrayTabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
         TabulatedDifferentialOperator operator = new TabulatedDifferentialOperator(factory);
@@ -68,5 +68,5 @@ public class TabulatedDifferentialOperatorTest {
         assertEquals(7, derivative_function.getY(2));
         assertEquals(9, derivative_function.getY(3));
         assertEquals(9, derivative_function.getY(3));
-    }*/
+    }
 }
