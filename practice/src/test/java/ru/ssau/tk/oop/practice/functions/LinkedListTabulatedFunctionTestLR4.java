@@ -1,9 +1,8 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.Iterator;
 
@@ -118,7 +117,6 @@ class LinkedListTabulatedFunctionTestLR4 {
         double sum_point_x = 0;
         double sum_point_y = 0;
         for (Point point : list) {
-            point = iterator.next();
             sum_node_x += node.x;
             sum_point_x += point.x;
             sum_node_y += point.y;

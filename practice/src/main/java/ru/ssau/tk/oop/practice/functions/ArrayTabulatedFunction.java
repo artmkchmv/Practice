@@ -12,32 +12,40 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected int count;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
-        this.xValues = Arrays.copyOf(xValues, xValues.length);
-        this.yValues = Arrays.copyOf(yValues, yValues.length);
-        count = xValues.length;
+        if (xValues.length < 2 || yValues.length < 2)
+            throw new IllegalArgumentException("table length is less than the required minimum");
+        else {
+            this.xValues = Arrays.copyOf(xValues, xValues.length);
+            this.yValues = Arrays.copyOf(yValues, yValues.length);
+            count = xValues.length;
+        }
     }
 
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        xValues = new double[count];
-        yValues = new double[count];
-        double epsilon;
-        if (xTo - xFrom > pow(10, -9)) {
-            epsilon = (xTo - xFrom) / (count - 1);
-            for (int i = 0; i < count; i++) {
-                xValues[i] = xFrom + i * epsilon;
-                yValues[i] = source.apply(xFrom + i * epsilon);
-            }
-        } else if (xFrom - xTo > pow(10, -9)) {
+        if (count < 2)
+            throw new IllegalArgumentException("table length is less than the required minimum");
+        else {
+            xValues = new double[count];
+            yValues = new double[count];
+            double epsilon;
+            if (xTo - xFrom > pow(10, -9)) {
+                epsilon = (xTo - xFrom) / (count - 1);
+                for (int i = 0; i < count; i++) {
+                    xValues[i] = xFrom + i * epsilon;
+                    yValues[i] = source.apply(xFrom + i * epsilon);
+                }
+            } else if (xFrom - xTo > pow(10, -9)) {
 
-            epsilon = (xFrom - xTo) / (count - 1);
-            for (int i = 0; i < count; i++) {
-                xValues[i] = xFrom + i * epsilon;
-                yValues[i] = source.apply(xFrom + i * epsilon);
-            }
-        } else {
-            for (int i = 0; i < count; i++) {
-                xValues[i] = xFrom;
-                yValues[i] = source.apply(xFrom);
+                epsilon = (xFrom - xTo) / (count - 1);
+                for (int i = 0; i < count; i++) {
+                    xValues[i] = xFrom + i * epsilon;
+                    yValues[i] = source.apply(xFrom + i * epsilon);
+                }
+            } else {
+                for (int i = 0; i < count; i++) {
+                    xValues[i] = xFrom;
+                    yValues[i] = source.apply(xFrom);
+                }
             }
         }
     }
@@ -88,6 +96,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public int floorIndexOfX(double x) {
+        if (x < leftBound())
+            throw new IllegalArgumentException("x is less than the left bound");
         int i = 0;
         if (xValues[i] - x > 1e-9)
             return 0;
@@ -119,22 +129,15 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1)
-            return yValues[0];
-        else {
-            double rightX = getX(floorIndex);
-            double leftX = getX(floorIndex - 1);
-            double rightY = getY(floorIndex);
-            double leftY = getY(floorIndex - 1);
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
-        }
+        double rightX = getX(floorIndex);
+        double leftX = getX(floorIndex - 1);
+        double rightY = getY(floorIndex);
+        double leftY = getY(floorIndex - 1);
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
-        if (count == 1)
-            return yValues[0];
-        else
-            return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
+        return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
     }
 
     @Override

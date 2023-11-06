@@ -66,7 +66,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-        if (xValues.length < 2)
+        if (xValues.length < 2 || yValues.length < 2)
             throw new IllegalArgumentException("table length is less than the required minimum");
         for (int i = 0; i < xValues.length; i++) {
             addNode(xValues[i], yValues[i]);
@@ -298,14 +298,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
             @Override
             public boolean hasNext() {
-                return (node.next != head);
+                return (node.next != null);
             }
 
             @Override
             public Point next() {
                 if (hasNext()) {
                     Point point = new Point(node.x, node.y);
-                    node = node.next;
+                    if (node.next == head)
+                        node.next = null;
+                    else
+                        node = node.next;
                     return point;
                 } else throw new NoSuchElementException();
             }

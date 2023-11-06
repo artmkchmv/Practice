@@ -22,8 +22,17 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
     public TabulatedFunctionFactory getFactory() {
         return this.factory;
     }
-    //unfinished
+
     public TabulatedFunction derive(TabulatedFunction function) {
-        return function;
+        Point[] array = TabulatedFunctionOperationService.asPoints(function);
+        double[] xValues = new double[function.getCount()];
+        double[] yValues = new double[function.getCount()];
+        for (int i = 0; i < function.getCount() - 1; i++) {
+            xValues[i] = array[i].x;
+            yValues[i] = (array[i + 1].y - array[i].y) / (array[i + 1].x - array[i].x);
+        }
+        xValues[function.getCount() - 1] = array[function.getCount() - 1].x;
+        yValues[function.getCount() - 1] = yValues[function.getCount() - 2];
+        return factory.create(xValues, yValues);
     }
 }
