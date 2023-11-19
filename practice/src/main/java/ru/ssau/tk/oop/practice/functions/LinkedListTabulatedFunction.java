@@ -1,10 +1,14 @@
 package ru.ssau.tk.oop.practice.functions;
 
 import java.util.Iterator;
+
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
-    protected static class Node {
+import java.io.Serializable;
+
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+    protected static class Node implements Serializable {
+        private static final long serialVersionUID = 1L;
         public Node next;
         public Node prev;
         public double x;
@@ -46,6 +50,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         }
     }
 
+    private static final long serialVersionUID = 1L;
     protected int count;
     private Node head;
 
