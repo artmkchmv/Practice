@@ -166,11 +166,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    public String toString() {
-        return Arrays.toString(xValues) + '\n' + Arrays.toString(yValues);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o.getClass() != this.getClass())
             return false;

@@ -1,7 +1,6 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import ru.ssau.tk.oop.practice.exceptions.DifferentLengthOfArraysException;
-import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.oop.practice.exceptions.*;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     abstract protected int floorIndexOfX(double x);
@@ -27,5 +26,23 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
             if (xValues[i] > xValues[i + 1])
                 throw new ArrayIsNotSortedException("Array not sorted");
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder tempString = new StringBuilder();
+        tempString.append(getClass().getSimpleName());
+        tempString.append(" size = ");
+        tempString.append(getCount());
+        tempString.append("\n");
+        for (Point point : this) {
+            tempString.append("[");
+            tempString.append(point.x);
+            tempString.append("; ");
+            tempString.append(point.y);
+            tempString.append("]");
+            tempString.append("\n");
+        }
+        return tempString.toString();
     }
 }

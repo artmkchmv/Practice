@@ -233,18 +233,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    public String toString() {
-        String result = "";
-        Node tempNode = head;
-        while (tempNode != head.prev) {
-            result += "(" + tempNode.x + "; " + tempNode.y + ")" + ", ";
-            tempNode = tempNode.next;
-        }
-        result += "(" + head.prev.x + "; " + head.prev.y + ")";
-        return result;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
