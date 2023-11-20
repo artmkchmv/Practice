@@ -1,12 +1,8 @@
 package ru.ssau.tk.oop.practice.io;
 
-import ru.ssau.tk.oop.practice.functions.ArrayTabulatedFunction;
-import ru.ssau.tk.oop.practice.functions.LinkedListTabulatedFunction;
-import ru.ssau.tk.oop.practice.functions.TabulatedFunction;
+import java.io.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import ru.ssau.tk.oop.practice.functions.*;
 
 public class TabulatedFunctionFileWriter {
     public static void main(String[] args) {

@@ -1,10 +1,10 @@
 package ru.ssau.tk.oop.practice.io;
 
-import ru.ssau.tk.oop.practice.functions.ArrayTabulatedFunction;
-import ru.ssau.tk.oop.practice.functions.TabulatedFunction;
-import ru.ssau.tk.oop.practice.operations.TabulatedDifferentialOperator;
-
 import java.io.*;
+
+import ru.ssau.tk.oop.practice.functions.*;
+
+import ru.ssau.tk.oop.practice.operations.*;
 
 public class ArrayTabulatedFunctionSerialization {
     public static void main(String[] args) {

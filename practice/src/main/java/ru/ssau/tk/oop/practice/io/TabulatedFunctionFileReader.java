@@ -1,12 +1,10 @@
 package ru.ssau.tk.oop.practice.io;
 
-import ru.ssau.tk.oop.practice.functions.TabulatedFunction;
-import ru.ssau.tk.oop.practice.functions.factory.ArrayTabulatedFunctionFactory;
-import ru.ssau.tk.oop.practice.functions.factory.LinkedListTabulatedFunctionFactory;
+import java.io.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import ru.ssau.tk.oop.practice.functions.*;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
 
 public class TabulatedFunctionFileReader {
     public static void main(String[] args) {

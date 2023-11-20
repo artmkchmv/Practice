@@ -1,10 +1,8 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import java.util.Iterator;
+import java.util.*;
 
-import java.util.NoSuchElementException;
-
-import java.io.Serializable;
+import java.io.*;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
     protected static class Node implements Serializable {

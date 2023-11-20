@@ -1,6 +1,6 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import java.io.Serializable;
+import java.io.*;
 
 import java.util.*;
 

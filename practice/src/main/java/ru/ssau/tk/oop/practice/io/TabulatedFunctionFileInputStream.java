@@ -4,9 +4,9 @@ import java.io.*;
 
 import ru.ssau.tk.oop.practice.functions.*;
 
-import ru.ssau.tk.oop.practice.functions.factory.*;
-
 import ru.ssau.tk.oop.practice.operations.*;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
 
 public class TabulatedFunctionFileInputStream {
     public static void main(String[] args) {
