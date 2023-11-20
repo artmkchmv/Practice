@@ -1,13 +1,12 @@
 package ru.ssau.tk.oop.practice.operations;
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import ru.ssau.tk.oop.practice.functions.*;
-import ru.ssau.tk.oop.practice.functions.factory.LinkedListTabulatedFunctionFactory;
-import ru.ssau.tk.oop.practice.functions.factory.TabulatedFunctionFactory;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
 
 public class TabulatedFunctionOperationServiceTest {
     double[] xValue = {1, 1.5, 2, 2.5, 3};
