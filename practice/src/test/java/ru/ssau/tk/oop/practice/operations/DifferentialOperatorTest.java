@@ -1,10 +1,10 @@
 package ru.ssau.tk.oop.practice.operations;
 
-import org.junit.Test;
-import ru.ssau.tk.oop.practice.functions.CosFunction;
-import ru.ssau.tk.oop.practice.functions.MathFunction;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+import ru.ssau.tk.oop.practice.functions.*;
 
 public class DifferentialOperatorTest {
     MathFunction cos = new CosFunction();
