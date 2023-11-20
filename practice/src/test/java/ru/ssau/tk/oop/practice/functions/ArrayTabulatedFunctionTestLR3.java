@@ -1,10 +1,12 @@
 package ru.ssau.tk.oop.practice.functions;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayTabulatedFunctionTestLR3 {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testEquals() throws Exception {
         double[] xValues1 = {2.0, 3.0, 4.0};
         double[] yValues1 = {5.0, 6.0, 7.0};
@@ -15,7 +17,7 @@ class ArrayTabulatedFunctionTestLR3 {
         assertTrue(fun1.equals(fun2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testHashCode() throws Exception {
         double[] xValues1 = {2.0, 3.0, 4.0};
         double[] yValues1 = {5.0, 6.0, 7.0};
@@ -26,7 +28,7 @@ class ArrayTabulatedFunctionTestLR3 {
         assertEquals(fun1.hashCode(), fun2.hashCode());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testClone() throws Exception {
         double[] xValues1 = {2.0, 3.0, 4.0};
         double[] yValues1 = {5.0, 6.0, 7.0};
