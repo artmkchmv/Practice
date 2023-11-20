@@ -1,13 +1,10 @@
 package ru.ssau.tk.oop.practice.functions;
 
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-
-import java.util.Iterator;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Iterator;
 
 class LinkedListTabulatedFunctionTestLR4 {
 
@@ -17,7 +14,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testLinkedListTabulatedFunctionConstructor1Thrown() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     double[] array1 = {1.5};
                     double[] array2 = {6.1};
                     LinkedListTabulatedFunction test_list1 = new LinkedListTabulatedFunction(array1, array2);
@@ -27,7 +24,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testLinkedListTabulatedFunctionConstructor2Thrown() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     MathFunction sqrFunc = new SqrFunction();
                     double x_From = 1.2;
                     double x_To = 3.3;
@@ -39,7 +36,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testgetXThrown1() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     double result = list.getX(-1);
                 }
         );
@@ -47,7 +44,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testgetXThrown2() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     double result = list.getX(10);
                 }
         );
@@ -55,7 +52,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testgetYThrown1() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     double result = list.getY(-1);
                 }
         );
@@ -63,7 +60,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testgetYThrown2() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     double result = list.getY(10);
                 }
         );
@@ -71,7 +68,7 @@ class LinkedListTabulatedFunctionTestLR4 {
 
     @Test
     public void testfloorIndexOfXThrown() throws Exception {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     int result = list.floorIndexOfX(1.4);
                 }
         );
