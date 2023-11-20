@@ -137,15 +137,14 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     protected double interpolate(double x, int floorIndex) {
 
-        if (getX(floorIndex-1)<x && x< getX(floorIndex)) {
+        if (getX(floorIndex - 1) < x && x < getX(floorIndex)) {
             double rightX = getX(floorIndex);
             double leftX = getX(floorIndex - 1);
             double rightY = getY(floorIndex);
             double leftY = getY(floorIndex - 1);
             return (leftY + ((rightY - leftY) / (rightX - leftX)) * (x - leftX));
-        }
-        else
-            throw new InterpolationException("X is not in the interval");
+        } else
+            throw new InterpolationException("x is not in the interval");
     }
 
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
