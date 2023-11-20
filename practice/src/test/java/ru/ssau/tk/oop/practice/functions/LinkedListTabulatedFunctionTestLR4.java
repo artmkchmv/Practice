@@ -98,7 +98,7 @@ class LinkedListTabulatedFunctionTestLR4 {
             Point point = iterator.next();
             sum_node_x += node.x;
             sum_point_x += point.x;
-            sum_node_y += point.y;
+            sum_node_y += node.y;
             sum_point_y += point.y;
             node = node.next;
         }
@@ -117,7 +117,7 @@ class LinkedListTabulatedFunctionTestLR4 {
         for (Point point : list) {
             sum_node_x += node.x;
             sum_point_x += point.x;
-            sum_node_y += point.y;
+            sum_node_y += node.y;
             sum_point_y += point.y;
             node = node.next;
         }
