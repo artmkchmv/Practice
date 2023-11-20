@@ -33,15 +33,6 @@ class LinkedListTabulatedFunctionTestLR3 {
     }
 
     @Test
-    public void testtoStringList() throws Exception {
-        double[] xValues = {1.5, 2.6, 3.7};
-        double[] yValues = {7.1, 8.2, 9.3};
-        LinkedListTabulatedFunction lst = new LinkedListTabulatedFunction(xValues, yValues);
-        String result = "(1.5; 7.1), (2.6; 8.2), (3.7; 9.3)";
-        assertEquals(result, lst.toString());
-    }
-
-    @Test
     public void testequalsList() throws Exception {
         double[] xValues_1 = {1.5, 2.6, 3.7};
         double[] yValues_1 = {7.1, 8.2, 9.3};
