@@ -1,17 +1,14 @@
 package ru.ssau.tk.oop.practice.functions;
 
-import ru.ssau.tk.oop.practice.exceptions.InterpolationException;
-import java.io.Serial;
 import java.io.Serializable;
 
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
-    @Serial
+import ru.ssau.tk.oop.practice.exceptions.*;
+
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
     private static final long serialVersionUID = 1L;
     private final double[] xValues;
     private final double[] yValues;
