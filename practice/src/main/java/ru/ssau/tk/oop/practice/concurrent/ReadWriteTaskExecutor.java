@@ -1,7 +1,6 @@
 package ru.ssau.tk.oop.practice.concurrent;
 
-import ru.ssau.tk.oop.practice.functions.ConstantFunction;
-import ru.ssau.tk.oop.practice.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.oop.practice.functions.*;
 
 public class ReadWriteTaskExecutor {
     public static void main(String[] args) {
