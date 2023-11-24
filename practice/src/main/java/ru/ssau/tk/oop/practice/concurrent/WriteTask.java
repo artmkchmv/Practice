@@ -2,17 +2,20 @@ package ru.ssau.tk.oop.practice.concurrent;
 
 import ru.ssau.tk.oop.practice.functions.*;
 
-public class ReadTask implements Runnable {
+public class WriteTask implements Runnable {
     private TabulatedFunction function;
+    private double value;
 
-    public ReadTask(TabulatedFunction function) {
+    public WriteTask(TabulatedFunction function, double value) {
         this.function = function;
+        this.value = value;
     }
 
     @Override
     public void run() {
         for (int i = 0; i < function.getCount(); i++) {
-            System.out.printf("After read: i = %d, x = %f, y = %f", i, function.getX(i), function.getY(i));
+            function.setY(i, value);
+            System.out.printf("Writing for index %d complete", i);
         }
     }
 }
