@@ -12,7 +12,7 @@ public class ReadTask implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < function.getCount(); i++) {
-                System.out.printf("After read: " + i + " = %d, " + function.getX(i) + " = %f, " + function.getY(i) + " = %f");
+                System.out.println("After read: i = " + i + ", x = " + function.getX(i) + ", y = " + function.getY(i));
         }
     }
 }
