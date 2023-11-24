@@ -3,7 +3,7 @@ package ru.ssau.tk.oop.practice.concurrent;
 import ru.ssau.tk.oop.practice.functions.*;
 
 public class ReadTask implements Runnable {
-    private TabulatedFunction function;
+    private final TabulatedFunction function;
 
     public ReadTask(TabulatedFunction function) {
         this.function = function;
