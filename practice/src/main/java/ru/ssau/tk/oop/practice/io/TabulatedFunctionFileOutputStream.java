@@ -6,7 +6,7 @@ import ru.ssau.tk.oop.practice.functions.*;
 
 public class TabulatedFunctionFileOutputStream {
     public static void main(String[] args) {
-        try (BufferedOutputStream ArrayFileOutputStream = new BufferedOutputStream(new FileOutputStream("output/arrayfunction.bin")); BufferedOutputStream LinkedListFileOutputStream = new BufferedOutputStream(new FileOutputStream("output/binaryfunction.bin"))) {
+        try (BufferedOutputStream ArrayFileOutputStream = new BufferedOutputStream(new FileOutputStream("output/arrayfunction.bin")); BufferedOutputStream LinkedListFileOutputStream = new BufferedOutputStream(new FileOutputStream("output/linkedlistfunction.bin"))) {
             double[] xValues = {1.5, 2.6, 3.7};
             double[] yValues = {7.1, 8.2, 9.3};
             TabulatedFunction ArrayFunction = new ArrayTabulatedFunction(xValues, yValues);
