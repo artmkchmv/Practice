@@ -5,6 +5,10 @@ import java.util.*;
 import java.io.*;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+    private static final long serialVersionUID = 1L;
+    protected int count;
+    private Node head;
+
     protected static class Node implements Serializable {
         private static final long serialVersionUID = 1L;
         public Node next;
@@ -47,10 +51,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             return tempNode;
         }
     }
-
-    private static final long serialVersionUID = 1L;
-    protected int count;
-    private Node head;
 
     private void addNode(double x, double y) {
         Node newNode = new Node(x, y);
