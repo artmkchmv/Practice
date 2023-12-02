@@ -132,4 +132,16 @@ public class SynchronizedTabulatedFunction implements TabulatedFunction {
             lock.unlock();
         }
     }
+    public interface Operation<T> {
+        T apply(SynchronizedTabulatedFunction func);
+    }
+
+    public <T> T doSynchronously(Operation<T> operation) {
+        lock.lock();
+        try {
+            return operation.apply(this);
+        } finally {
+            lock.unlock();
+        }
+    }
 }
