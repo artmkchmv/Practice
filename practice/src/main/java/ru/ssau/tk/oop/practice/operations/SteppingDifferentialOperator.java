@@ -1,9 +1,8 @@
 package ru.ssau.tk.oop.practice.operations;
 
-import ru.ssau.tk.oop.practice.functions.MathFunction;
+import ru.ssau.tk.oop.practice.functions.*;
 
-import static java.lang.Double.NaN;
-import static java.lang.Double.POSITIVE_INFINITY;
+import static java.lang.Double.*;
 
 public abstract class SteppingDifferentialOperator implements DifferentialOperator<MathFunction> {
     protected double step;
@@ -22,5 +21,4 @@ public abstract class SteppingDifferentialOperator implements DifferentialOperat
     public double getStep() {
         return step;
     }
-
 }
