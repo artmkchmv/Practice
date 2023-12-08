@@ -21,7 +21,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
             checkLengthIsTheSame(xValues, yValues);
             checkSorted(xValues);
             checkSorted(yValues);
-
             this.xValues = Arrays.copyOf(xValues, xValues.length);
             this.yValues = Arrays.copyOf(yValues, yValues.length);
             count = xValues.length;
@@ -31,28 +30,25 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count < 2)
             throw new IllegalArgumentException("table length is less than the required minimum");
-        else {
-            xValues = new double[count];
-            yValues = new double[count];
-            double epsilon;
-            if (xTo - xFrom > pow(10, -9)) {
-                epsilon = (xTo - xFrom) / (count - 1);
-                for (int i = 0; i < count; i++) {
-                    xValues[i] = xFrom + i * epsilon;
-                    yValues[i] = source.apply(xFrom + i * epsilon);
-                }
-            } else if (xFrom - xTo > pow(10, -9)) {
-
-                epsilon = (xFrom - xTo) / (count - 1);
-                for (int i = 0; i < count; i++) {
-                    xValues[i] = xFrom + i * epsilon;
-                    yValues[i] = source.apply(xFrom + i * epsilon);
-                }
-            } else {
-                for (int i = 0; i < count; i++) {
-                    xValues[i] = xFrom;
-                    yValues[i] = source.apply(xFrom);
-                }
+        this.count = count;
+        xValues = new double[count];
+        yValues = new double[count];
+        if (xTo - xFrom > pow(10, -9)) {
+            double epsilon = (xTo - xFrom) / (count - 1);
+            for (int i = 0; i < count; i++) {
+                xValues[i] = xFrom + i * epsilon;
+                yValues[i] = source.apply(xFrom + i * epsilon);
+            }
+        } else if (xFrom - xTo > pow(10, -9)) {
+            double epsilon = (xFrom - xTo) / (count - 1);
+            for (int i = 0; i < count; i++) {
+                xValues[i] = xTo + i * epsilon;
+                yValues[i] = source.apply(xTo + i * epsilon);
+            }
+        } else {
+            for (int i = 0; i < count; i++) {
+                xValues[i] = xFrom;
+                yValues[i] = source.apply(xFrom);
             }
         }
     }

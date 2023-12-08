@@ -90,7 +90,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 addNode((xTo + i * epsilon), source.apply(xTo + i * epsilon));
             }
         } else {
-            for (int i = 0; i > count; i++) {
+            for (int i = 0; i < count; i++) {
                 addNode(xFrom, source.apply(xFrom));
             }
         }
