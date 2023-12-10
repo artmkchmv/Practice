@@ -1,7 +1,5 @@
 package ru.ssau.tk.oop.practice.ui;
 
-import jdk.nashorn.internal.scripts.JD;
-
 import javax.swing.*;
 
 import java.awt.*;
