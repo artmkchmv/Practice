@@ -20,7 +20,6 @@ public class TabulatedFunctionOperationServiceTest {
     @Test
     void asPointsTest() {
         Point[] arrayOfPoints = TabulatedFunctionOperationService.asPoints(func1);
-
         int i = 0;
         for (Point point : arrayOfPoints) {
             assertEquals(point.x, xValue[i]);
@@ -35,7 +34,6 @@ public class TabulatedFunctionOperationServiceTest {
 
     @Test
     void addTest() {
-
         TabulatedFunction result1 = operation1.Addition(func1, func3);
         for (int i = 0; i < result1.getCount(); i++) {
             assertEquals(yValue1[i] + yValue1[i], result1.getY(i));
@@ -45,7 +43,6 @@ public class TabulatedFunctionOperationServiceTest {
         for (int i = 0; i < result2.getCount(); i++) {
             assertEquals(yValue1[i] + yValue2[i], result2.getY(i));
         }
-
     }
 
     @Test
@@ -63,7 +60,6 @@ public class TabulatedFunctionOperationServiceTest {
 
     @Test
     void multiplicationTest() {
-
         TabulatedFunction result1 = operation1.Multiplication(func1, func2);
         for (int i = 0; i < result1.getCount(); i++) {
             assertEquals(yValue1[i] * yValue2[i], result1.getY(i));
@@ -73,12 +69,10 @@ public class TabulatedFunctionOperationServiceTest {
         for (int i = 0; i < result2.getCount(); i++) {
             assertEquals(yValue1[i] * yValue2[i], result2.getY(i));
         }
-
     }
 
     @Test
     void divisionTest() {
-
         TabulatedFunction result1 = operation1.Division(func1, func2);
         for (int i = 0; i < result1.getCount(); i++) {
             assertEquals(yValue1[i] / yValue2[i], result1.getY(i));
@@ -88,6 +82,5 @@ public class TabulatedFunctionOperationServiceTest {
         for (int i = 0; i < result2.getCount(); i++) {
             assertEquals(yValue1[i] / yValue2[i], result2.getY(i));
         }
-
     }
 }

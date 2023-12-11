@@ -40,13 +40,14 @@ public class TabulatedFunctionOperationService {
 
     protected TabulatedFunction doOperation(TabulatedFunction a, TabulatedFunction b, BiOperation operation) {
         if (a.getCount() != b.getCount()) throw new InconsistentFunctionsException();
+
         Point[] arraysA = asPoints(a);
         Point[] arraysB = asPoints(b);
 
-        double[] xValues = new double[a.getCount()];
-        double[] yValues = new double[a.getCount()];
+        double[] xValues = new double[b.getCount()];
+        double[] yValues = new double[b.getCount()];
 
-        for (int i = 0; i < a.getCount(); i++) {
+        for (int i = 0; i < b.getCount(); i++) {
             if (arraysA[i].x != arraysB[i].x) throw new InconsistentFunctionsException();
 
             xValues[i] = arraysA[i].x;
