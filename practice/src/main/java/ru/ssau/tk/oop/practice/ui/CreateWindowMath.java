@@ -9,20 +9,19 @@ import java.awt.event.*;
 import java.util.*;
 
 import ru.ssau.tk.oop.practice.functions.*;
-import ru.ssau.tk.oop.practice.functions.factory.ArrayTabulatedFunctionFactory;
-import ru.ssau.tk.oop.practice.functions.factory.LinkedListTabulatedFunctionFactory;
-import ru.ssau.tk.oop.practice.functions.factory.TabulatedFunctionFactory;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
 
 public class CreateWindowMath extends JDialog {
 
-    private static TabulatedFunction function; //
+    private static TabulatedFunction function;
     private boolean factory_type;
     private static TabulatedFunctionFactory factory;
     private static String functionName;
     private static boolean status;
-    private HashMap<String, MathFunction> mapOfFunctions; //
+    private HashMap<String, MathFunction> mapOfFunctions;
 
-    public static TabulatedFunction getMathFunction() { //
+    public static TabulatedFunction getMathFunction() {
         return function;
     };
 
@@ -108,18 +107,25 @@ public class CreateWindowMath extends JDialog {
                 setMathStatus(true);
                 functionName = arrayOfFunctions.getSelectedItem().toString();
                 MathFunction selectedFunction = mapOfFunctions.get(arrayOfFunctions.getSelectedItem());
-                double xFrom = Double.parseDouble(xFromTextField.getText());
-                double xTo = Double.parseDouble(xToTextField.getText());
-                int count = Integer.parseInt(countTextField.getText());
-                if (!factory_type) {
-                    factory = new ArrayTabulatedFunctionFactory();
+                try {
+                    double xFrom = Double.parseDouble(xFromTextField.getText());
+                    double xTo = Double.parseDouble(xToTextField.getText());
+                    int count = Integer.parseInt(countTextField.getText());
+                    if (count > 2) {
+                        if (!factory_type) {
+                            factory = new ArrayTabulatedFunctionFactory();
+                        } else {
+                            factory = new LinkedListTabulatedFunctionFactory();
+                        }
+                        function = factory.create(selectedFunction, xFrom, xTo, count);
+                        setVisible(false);
+                        NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
+                    } else {
+                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
+                    }
+                } catch (NumberFormatException err) {
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
                 }
-                else {
-                    factory = new LinkedListTabulatedFunctionFactory();
-                }
-                function = factory.create(selectedFunction, xFrom, xTo, count);
-                setVisible(false);
-                NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
             }
         });
 

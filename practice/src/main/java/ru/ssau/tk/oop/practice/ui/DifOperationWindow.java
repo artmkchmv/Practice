@@ -1,12 +1,5 @@
 package ru.ssau.tk.oop.practice.ui;
 
-import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
-import ru.ssau.tk.oop.practice.functions.*;
-
-import ru.ssau.tk.oop.practice.functions.factory.*;
-
-import ru.ssau.tk.oop.practice.operations.*;
-
 import javax.swing.*;
 
 import javax.swing.table.*;
@@ -15,11 +8,17 @@ import java.awt.*;
 
 import java.awt.event.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+
 import java.util.*;
+
+import ru.ssau.tk.oop.practice.exceptions.*;
+
+import ru.ssau.tk.oop.practice.functions.*;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
+
+import ru.ssau.tk.oop.practice.operations.*;
 
 import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
 
@@ -45,14 +44,14 @@ public class DifOperationWindow extends JDialog {
         }
     }
 
-    public DifOperationWindow(JFrame owner, LinkedList<TabulatedFunction> lst, boolean fct_type) { //
+    public DifOperationWindow(JFrame owner, LinkedList<TabulatedFunction> lst, boolean fct_type) {
         super(owner, "Differentiation", true);
         setSize(600, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        LinkedList<TabulatedFunction> listOfFunctions = lst; //
+        LinkedList<TabulatedFunction> listOfFunctions = lst;
 
         factory_type = fct_type;
 
@@ -145,7 +144,7 @@ public class DifOperationWindow extends JDialog {
                     differentialOperator.setFactory(factory);
                     derivative = differentialOperator.derive(selectedFunction);
                     updateTable(derivative, "Derivative Tabulated Function");
-                }catch (ArrayIsNotSortedException er){
+                } catch (ArrayIsNotSortedException er) {
                     ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
                 }
             }

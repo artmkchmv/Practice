@@ -8,6 +8,8 @@ import java.awt.*;
 
 import java.awt.event.*;
 
+import ru.ssau.tk.oop.practice.exceptions.*;
+
 import ru.ssau.tk.oop.practice.functions.*;
 
 import ru.ssau.tk.oop.practice.functions.factory.*;
@@ -62,11 +64,19 @@ public class CreateWindowXY extends JDialog {
                 DefaultTableModel model = (DefaultTableModel) pointsTable.getModel();
                 model.setRowCount(0);
                 model.setColumnIdentifiers(new String[]{"X", "Y"});
-                int numPoints = Integer.parseInt(numPointsField.getText());
-                for (int i = 0; i < numPoints; i++) {
-                    model.addRow(new Object[]{"", ""});
+                try {
+                    int numPoints = Integer.parseInt(numPointsField.getText());
+                    if (numPoints > 2) {
+                        for (int i = 0; i < numPoints; i++) {
+                            model.addRow(new Object[]{"", ""});
+                        }
+                        pointsTable.setModel(model);
+                    } else {
+                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
+                    }
+                } catch (NumberFormatException er) {
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
                 }
-                pointsTable.setModel(model);
             }
         });
 
@@ -87,19 +97,25 @@ public class CreateWindowXY extends JDialog {
                 DefaultTableModel model = (DefaultTableModel) pointsTable.getModel();
                 double[] xValues = new double[pointsTable.getRowCount()];
                 double[] yValues = new double[pointsTable.getRowCount()];
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    xValues[i] = Double.parseDouble(model.getValueAt(i, 0).toString());
-                    yValues[i] = Double.parseDouble(model.getValueAt(i, 1).toString());
+                try {
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        xValues[i] = Double.parseDouble(model.getValueAt(i, 0).toString());
+                        yValues[i] = Double.parseDouble(model.getValueAt(i, 1).toString());
+                    }
+                    if (!factory_type) {
+                        factory = new ArrayTabulatedFunctionFactory();
+                    }
+                    else {
+                        factory = new LinkedListTabulatedFunctionFactory();
+                    }
+                    function = factory.create(xValues, yValues);
+                    setVisible(false);
+                    NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
+                } catch (NumberFormatException er) {
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                } catch (ArrayIsNotSortedException er) {
+                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
                 }
-                if (!factory_type) {
-                    factory = new ArrayTabulatedFunctionFactory();
-                }
-                else {
-                    factory = new LinkedListTabulatedFunctionFactory();
-                }
-                function = factory.create(xValues, yValues);
-                setVisible(false);
-                NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
             }
         });
 
