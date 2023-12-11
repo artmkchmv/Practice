@@ -112,9 +112,11 @@ public class CreateWindowXY extends JDialog {
                     setVisible(false);
                     NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
                 } catch (NumberFormatException er) {
+                    setXYStatus(false);
                     ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowXY.this);
                 } catch (ArrayIsNotSortedException er) {
-                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(CreateWindowXY.this);
+                    setXYStatus(false);
+                    ErrorSortedJDialogWindow errorSortedWindow = new ErrorSortedJDialogWindow(CreateWindowXY.this);
                 }
             }
         });

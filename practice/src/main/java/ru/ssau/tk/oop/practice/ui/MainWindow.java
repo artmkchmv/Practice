@@ -1,5 +1,6 @@
 package ru.ssau.tk.oop.practice.ui;
 
+import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.oop.practice.functions.*;
 
 import ru.ssau.tk.oop.practice.functions.factory.*;
@@ -120,6 +121,8 @@ public class MainWindow extends JFrame {
                     updateTable(readTabulatedFunction(new BufferedReader(new FileReader(file.getAbsolutePath())), factory), "Tabulated Function");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
+                } catch (ArrayIsNotSortedException ex) {
+                    ErrorSortedJFrameWindow errorSortedWindow = new ErrorSortedJFrameWindow(mainFrame);
                 }
             }
         });

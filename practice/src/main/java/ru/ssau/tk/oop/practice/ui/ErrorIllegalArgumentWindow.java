@@ -11,6 +11,7 @@ public class ErrorIllegalArgumentWindow extends JDialog {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
 
         JPanel errorPanel = new JPanel();
         errorPanel.setLayout(new FlowLayout());

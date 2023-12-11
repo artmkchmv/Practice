@@ -207,21 +207,25 @@ public class MathOperationsWindow extends JDialog {
                 else {
                     factory = new LinkedListTabulatedFunctionFactory();
                 }
-                operation = new TabulatedFunctionOperationService(factory);
-                if (Objects.equals(operationName, operationNames[0])) {
-                    resultFunction = operation.Addition(selectedFunction1, selectedFunction2);
+                try {
+                    operation = new TabulatedFunctionOperationService(factory);
+                    if (Objects.equals(operationName, operationNames[0])) {
+                        resultFunction = operation.Addition(selectedFunction1, selectedFunction2);
+                    }
+                    if (Objects.equals(operationName, operationNames[1])) {
+                        resultFunction = operation.Subtraction(selectedFunction1, selectedFunction2);
+                    }
+                    if (Objects.equals(operationName, operationNames[2])) {
+                        resultFunction = operation.Multiplication(selectedFunction1, selectedFunction2);
+                    }
+                    if (Objects.equals(operationName, operationNames[3])) {
+                        resultFunction = operation.Division(selectedFunction1, selectedFunction2);
+                    }
+                    list_of_results.add(resultFunction);
+                    updateTable(resultFunction, "Tabulated Function (Result of " + operationName + ")");
+                } catch (NullPointerException ex) {
+                    ErrorNullPointerWindow nullPointerWindow = new ErrorNullPointerWindow(MathOperationsWindow.this);
                 }
-                if (Objects.equals(operationName, operationNames[1])) {
-                    resultFunction = operation.Subtraction(selectedFunction1, selectedFunction2);
-                }
-                if (Objects.equals(operationName, operationNames[2])) {
-                    resultFunction = operation.Multiplication(selectedFunction1, selectedFunction2);
-                }
-                if (Objects.equals(operationName, operationNames[3])) {
-                    resultFunction = operation.Division(selectedFunction1, selectedFunction2);
-                }
-                list_of_results.add(resultFunction);
-                updateTable(resultFunction, "Tabulated Function (Result of " + operationName + ")");
             }
         });
 

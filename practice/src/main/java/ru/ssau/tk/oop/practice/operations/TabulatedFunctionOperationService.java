@@ -56,19 +56,46 @@ public class TabulatedFunctionOperationService {
         return factory.create(xValues, yValues);
     }
 
+    protected TabulatedFunction doOperation2(TabulatedFunction a, TabulatedFunction b, BiOperation operation) {
+        if (a.getCount() != b.getCount())
+            throw new InconsistentFunctionsException();
+
+        double[] xValuesA = new double[a.getCount()];
+        double[] yValuesA = new double[a.getCount()];
+        double[] xValuesB = new double[b.getCount()];
+        double[] yValuesB = new double[b.getCount()];
+        double[] xValuesResult = new double[a.getCount()];
+        double[] yValuesResult = new double[b.getCount()];
+
+        for (int i = 0; i < a.getCount(); i++) {
+            xValuesA[i] = a.getX(i);
+            yValuesA[i] = a.getY(i);
+            xValuesB[i] = b.getX(i);
+            yValuesB[i] = b.getY(i);
+        }
+
+        for (int i = 0; i < a.getCount(); i++) {
+            if (xValuesA[i] != xValuesB[i])
+                throw new InconsistentFunctionsException();
+            xValuesResult[i] = xValuesA[i];
+            yValuesResult[i] = operation.apply(yValuesA[i], yValuesB[i]);
+        }
+        return factory.create(xValuesResult, yValuesResult);
+    }
+
     public TabulatedFunction Addition(TabulatedFunction a, TabulatedFunction b) {
         BiOperation op = (u, v) -> u + v;
-        return doOperation(a, b, op);
+        return doOperation2(a, b, op);
     }
 
     public TabulatedFunction Subtraction(TabulatedFunction a, TabulatedFunction b) {
         BiOperation op = (u, v) -> u - v;
-        return doOperation(a, b, op);
+        return doOperation2(a, b, op);
     }
 
     public TabulatedFunction Multiplication(TabulatedFunction a, TabulatedFunction b) {
         BiOperation op = (u, v) -> u * v;
-        return doOperation(a, b, op);
+        return doOperation2(a, b, op);
     }
 
     public TabulatedFunction Division(TabulatedFunction a, TabulatedFunction b) {
@@ -78,6 +105,6 @@ public class TabulatedFunctionOperationService {
             }
             return u / v;
         };
-        return doOperation(a, b, op);
+        return doOperation2(a, b, op);
     }
 }

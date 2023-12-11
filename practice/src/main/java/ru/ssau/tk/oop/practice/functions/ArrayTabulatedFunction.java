@@ -20,7 +20,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         else {
             checkLengthIsTheSame(xValues, yValues);
             checkSorted(xValues);
-            checkSorted(yValues);
             this.xValues = Arrays.copyOf(xValues, xValues.length);
             this.yValues = Arrays.copyOf(yValues, yValues.length);
             count = xValues.length;

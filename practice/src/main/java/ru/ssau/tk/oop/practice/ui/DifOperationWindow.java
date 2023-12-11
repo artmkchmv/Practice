@@ -12,6 +12,7 @@ import java.io.*;
 
 import java.util.*;
 
+import com.sun.scenario.effect.impl.state.LinearConvolveKernel;
 import ru.ssau.tk.oop.practice.exceptions.*;
 
 import ru.ssau.tk.oop.practice.functions.*;
@@ -25,6 +26,7 @@ import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
 public class DifOperationWindow extends JDialog {
     private TabulatedFunction selectedFunction;
     private TabulatedFunction derivative;
+    private LinkedList<TabulatedFunction> list_of_derivative;
     private boolean factory_type;
     private TabulatedFunctionFactory factory;
     private TabulatedDifferentialOperator differentialOperator;
@@ -109,27 +111,7 @@ public class DifOperationWindow extends JDialog {
 
         derivativeDescriptionPanel.add(derivativeDescriptionTextArea, BorderLayout.CENTER);
 
-        final int[] selectedRow = {-1};
-
-        resultTable.getSelectionModel().addListSelectionListener(e -> {
-            int newRow = resultTable.getSelectedRow();
-            if (newRow != -1 && newRow != selectedRow[0]) {
-                selectedRow[0] = newRow;
-                StringBuilder functionString = new StringBuilder();
-                functionString.append(derivative.getClass().getSimpleName());
-                functionString.append(" size = ");
-                functionString.append(derivative.getCount());
-                functionString.append("\n");
-                for (int i = 0; i < derivative.getCount(); i++) {
-                    functionString.append("[");
-                    functionString.append(derivative.getX(i));
-                    functionString.append("; ");
-                    functionString.append(derivative.getY(i));
-                    functionString.append("]\n");
-                }
-                derivativeDescriptionTextArea.setText(functionString.toString());
-            }
-        });
+        list_of_derivative = new LinkedList<TabulatedFunction>();
 
         difOperationButton.addActionListener(new ActionListener() {
             @Override
@@ -142,10 +124,11 @@ public class DifOperationWindow extends JDialog {
                     }
                     differentialOperator = new TabulatedDifferentialOperator();
                     differentialOperator.setFactory(factory);
-                    derivative = differentialOperator.derive(selectedFunction);
+                    derivative = differentialOperator.derive2(selectedFunction);
+                    list_of_derivative.add(derivative);
                     updateTable(derivative, "Derivative Tabulated Function");
                 } catch (ArrayIsNotSortedException er) {
-                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(DifOperationWindow.this);
+                    ErrorSortedJDialogWindow errorSortedWindow = new ErrorSortedJDialogWindow(DifOperationWindow.this);
                 }
             }
         });
@@ -168,6 +151,29 @@ public class DifOperationWindow extends JDialog {
                 } else {
                     ErrorCreateJDialogWindow errorWindow = new ErrorCreateJDialogWindow(DifOperationWindow.this);
                 }
+            }
+        });
+
+        final int[] selectedRow = {-1};
+
+        resultTable.getSelectionModel().addListSelectionListener(e -> {
+            int newRow = resultTable.getSelectedRow();
+            if (newRow != -1 && newRow != selectedRow[0]) {
+                selectedRow[0] = newRow;
+                TabulatedFunction selectedFunction = list_of_derivative.get(selectedRow[0]);
+                StringBuilder functionString = new StringBuilder();
+                functionString.append(selectedFunction.getClass().getSimpleName());
+                functionString.append(" size = ");
+                functionString.append(selectedFunction.getCount());
+                functionString.append("\n");
+                for (int i = 0; i < selectedFunction.getCount(); i++) {
+                    functionString.append("[");
+                    functionString.append(selectedFunction.getX(i));
+                    functionString.append("; ");
+                    functionString.append(selectedFunction.getY(i));
+                    functionString.append("]\n");
+                }
+                derivativeDescriptionTextArea.setText(functionString.toString());
             }
         });
 

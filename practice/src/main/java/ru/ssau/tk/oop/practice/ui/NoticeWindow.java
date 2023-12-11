@@ -11,6 +11,7 @@ public class NoticeWindow extends JDialog {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
 
         JPanel noticePanel = new JPanel();
         noticePanel.setLayout(new FlowLayout());

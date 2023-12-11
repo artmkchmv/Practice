@@ -1,15 +1,17 @@
 package ru.ssau.tk.oop.practice.ui;
 
 import javax.swing.*;
+
 import java.awt.*;
 
-public class ErrorSortedWindow extends JDialog {
-    public ErrorSortedWindow(JDialog owner) {
+public class ErrorSortedJDialogWindow extends JDialog {
+    public ErrorSortedJDialogWindow(JDialog owner) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
 
         JPanel errorPanel = new JPanel();
         errorPanel.setLayout(new FlowLayout());
