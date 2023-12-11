@@ -141,7 +141,7 @@ public class MainWindow extends JFrame {
                     }
                 }
             } else {
-
+                ErrorCreateJFrameWindow errorWindow = new ErrorCreateJFrameWindow(mainFrame);
             }
         });
 

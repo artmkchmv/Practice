@@ -14,7 +14,13 @@ import java.awt.*;
 
 import java.awt.event.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+
+import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
 
 public class DifOperationWindow extends JDialog {
     private TabulatedFunction selectedFunction;
@@ -64,7 +70,7 @@ public class DifOperationWindow extends JDialog {
         }
 
         functionsComboBox = new JComboBox<>(functionNames);
-        functionsComboBox.setPreferredSize(new Dimension(350, 26));
+        functionsComboBox.setPreferredSize(new Dimension(300, 26));
         functionsComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,9 +80,13 @@ public class DifOperationWindow extends JDialog {
 
         JButton difOperationButton = new JButton("Differentiate");
 
+        JButton saveDerivativeButton = new JButton("Save");
+        saveDerivativeButton.setPreferredSize(new Dimension(67, 26));
+
         functionsPanel.add(functionsLabel);
         functionsPanel.add(functionsComboBox);
         functionsPanel.add(difOperationButton);
+        functionsPanel.add(saveDerivativeButton);
 
         JPanel resultPanel = new JPanel(new BorderLayout());
 
@@ -134,6 +144,27 @@ public class DifOperationWindow extends JDialog {
                 differentialOperator.setFactory(factory);
                 derivative = differentialOperator.derive(selectedFunction);
                 updateTable(derivative, "Derivative Tabulated Function");
+            }
+        });
+
+        saveDerivativeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = resultTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    JFileChooser fileChooser = new JFileChooser();
+                    int returnVal = fileChooser.showSaveDialog(DifOperationWindow.this);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fileChooser.getSelectedFile();
+                        try {
+                            writeTabulatedFunction(new BufferedWriter(new FileWriter(file.getAbsolutePath())), derivative);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                } else {
+                    ErrorCreateJDialogWindow errorWindow = new ErrorCreateJDialogWindow(DifOperationWindow.this);
+                }
             }
         });
 
