@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 import java.util.*;
 
+import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.oop.practice.functions.*;
 
 public class CreateWindowMath extends JDialog {
@@ -19,7 +20,9 @@ public class CreateWindowMath extends JDialog {
 
     public static TabulatedFunction getMathFunction() { //
         return function;
-    };
+    }
+
+    ;
 
     public static String getFunctionName() {
         return functionName;
@@ -101,17 +104,25 @@ public class CreateWindowMath extends JDialog {
                 setMathStatus(true);
                 functionName = arrayOfFunctions.getSelectedItem().toString();
                 MathFunction selectedFunction = mapOfFunctions.get(arrayOfFunctions.getSelectedItem());
-                double xFrom = Double.parseDouble(xFromTextField.getText());
-                double xTo = Double.parseDouble(xToTextField.getText());
-                int count = Integer.parseInt(countTextField.getText());
-                if (!SettingsWindow.getTypeOfFabric()) {
-                    function = new ArrayTabulatedFunction(selectedFunction, xFrom, xTo, count);
+                try {
+                    double xFrom = Double.parseDouble(xFromTextField.getText());
+                    double xTo = Double.parseDouble(xToTextField.getText());
+                    int count = Integer.parseInt(countTextField.getText());
+                    if (count > 2) {
+                        if (!SettingsWindow.getTypeOfFabric()) {
+                            function = new ArrayTabulatedFunction(selectedFunction, xFrom, xTo, count);
+                        } else {
+                            function = new LinkedListTabulatedFunction(selectedFunction, xFrom, xTo, count);
+                        }
+                        setVisible(false);
+                        NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
+                    } else {
+                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
+                    }
+                } catch (NumberFormatException er) {
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
                 }
-                else {
-                    function = new LinkedListTabulatedFunction(selectedFunction, xFrom, xTo, count);
-                }
-                setVisible(false);
-                NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
+
             }
         });
 
