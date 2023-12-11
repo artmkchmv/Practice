@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ErrorNumFormatWindow extends JDialog {
-    public ErrorNumFormatWindow(JFrame owner) {
+    public ErrorNumFormatWindow(JDialog owner) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);

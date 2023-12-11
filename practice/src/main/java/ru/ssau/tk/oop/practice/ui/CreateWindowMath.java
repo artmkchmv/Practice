@@ -121,10 +121,10 @@ public class CreateWindowMath extends JDialog {
                         setVisible(false);
                         NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
                     } else {
-                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(owner);
+                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(CreateWindowMath.this);
                     }
                 } catch (NumberFormatException err) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowMath.this);
                 }
             }
         });

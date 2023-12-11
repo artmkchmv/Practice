@@ -72,10 +72,10 @@ public class CreateWindowXY extends JDialog {
                         }
                         pointsTable.setModel(model);
                     } else {
-                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(owner);
+                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(CreateWindowXY.this);
                     }
                 } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowXY.this);
                 }
             }
         });
@@ -112,9 +112,9 @@ public class CreateWindowXY extends JDialog {
                     setVisible(false);
                     NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
                 } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowXY.this);
                 } catch (ArrayIsNotSortedException er) {
-                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
+                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(CreateWindowXY.this);
                 }
             }
         });

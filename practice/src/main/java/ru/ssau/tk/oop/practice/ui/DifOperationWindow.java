@@ -145,7 +145,7 @@ public class DifOperationWindow extends JDialog {
                     derivative = differentialOperator.derive(selectedFunction);
                     updateTable(derivative, "Derivative Tabulated Function");
                 } catch (ArrayIsNotSortedException er) {
-                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
+                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(DifOperationWindow.this);
                 }
             }
         });

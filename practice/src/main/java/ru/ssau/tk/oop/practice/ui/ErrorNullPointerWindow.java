@@ -4,8 +4,8 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class ErrorIllegalArgumentWindow extends JDialog {
-    public ErrorIllegalArgumentWindow(JDialog owner) {
+public class ErrorNullPointerWindow extends JDialog {
+    public ErrorNullPointerWindow(JDialog owner) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);
@@ -15,7 +15,7 @@ public class ErrorIllegalArgumentWindow extends JDialog {
         JPanel errorPanel = new JPanel();
         errorPanel.setLayout(new FlowLayout());
 
-        JLabel errorLabel = new JLabel("Invalid value!");
+        JLabel errorLabel = new JLabel("Unknown Error!");
         errorPanel.add(errorLabel);
 
         JPanel okPanel = new JPanel();

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ErrorSortedWindow extends JDialog {
-    public ErrorSortedWindow(JFrame owner) {
+    public ErrorSortedWindow(JDialog owner) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);
