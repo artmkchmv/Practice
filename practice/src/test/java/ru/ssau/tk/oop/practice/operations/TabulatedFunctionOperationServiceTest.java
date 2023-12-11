@@ -36,9 +36,9 @@ public class TabulatedFunctionOperationServiceTest {
     @Test
     void addTest() {
 
-        TabulatedFunction result1 = operation1.Addition(func1, func2);
+        TabulatedFunction result1 = operation1.Addition(func1, func3);
         for (int i = 0; i < result1.getCount(); i++) {
-            assertEquals(yValue1[i] + yValue2[i], result1.getY(i));
+            assertEquals(yValue1[i] + yValue1[i], result1.getY(i));
         }
 
         TabulatedFunction result2 = operation2.Addition(func1, func4);

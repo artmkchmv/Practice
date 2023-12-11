@@ -6,7 +6,7 @@ import ru.ssau.tk.oop.practice.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.oop.practice.functions.factory.TabulatedFunctionFactory;
 
 public class TabulatedFunctionOperationService {
-    TabulatedFunctionFactory factory;
+    private TabulatedFunctionFactory factory;
 
     public TabulatedFunctionOperationService(TabulatedFunctionFactory factory) {
         this.factory = factory;
@@ -40,21 +40,19 @@ public class TabulatedFunctionOperationService {
 
     protected TabulatedFunction doOperation(TabulatedFunction a, TabulatedFunction b, BiOperation operation) {
         if (a.getCount() != b.getCount()) throw new InconsistentFunctionsException();
-        else {
-            Point[] arraysA = asPoints(a);
-            Point[] arraysB = asPoints(b);
+        Point[] arraysA = asPoints(a);
+        Point[] arraysB = asPoints(b);
 
-            double[] xValues = new double[a.getCount()];
-            double[] yValues = new double[a.getCount()];
+        double[] xValues = new double[a.getCount()];
+        double[] yValues = new double[a.getCount()];
 
-            for (int i = 0; i < a.getCount(); i++) {
-                if (arraysA[i].x != arraysB[i].x) throw new InconsistentFunctionsException();
+        for (int i = 0; i < a.getCount(); i++) {
+            if (arraysA[i].x != arraysB[i].x) throw new InconsistentFunctionsException();
 
-                xValues[i] = arraysA[i].x;
-                yValues[i] = operation.apply(arraysA[i].y, arraysB[i].y);
-            }
-            return factory.create(xValues, yValues);
+            xValues[i] = arraysA[i].x;
+            yValues[i] = operation.apply(arraysA[i].y, arraysB[i].y);
         }
+        return factory.create(xValues, yValues);
     }
 
     public TabulatedFunction Addition(TabulatedFunction a, TabulatedFunction b) {
