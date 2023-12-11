@@ -8,7 +8,6 @@ import java.awt.*;
 
 import java.awt.event.*;
 
-import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.oop.practice.functions.*;
 
 import ru.ssau.tk.oop.practice.functions.factory.*;
@@ -16,16 +15,15 @@ import ru.ssau.tk.oop.practice.functions.factory.*;
 public class CreateWindowXY extends JDialog {
 
     private static TabulatedFunction function;
+    private boolean factory_type;
     private static TabulatedFunctionFactory factory;
     private static boolean status;
     private JTable pointsTable;
     private JTextField numPointsField;
 
     public static TabulatedFunction getTabulatedFunction() {
-        return function;
-    }
-
-    ;
+      return function;
+    };
 
     public static boolean getXYStatus() {
         return status;
@@ -35,7 +33,7 @@ public class CreateWindowXY extends JDialog {
         this.status = status;
     }
 
-    public CreateWindowXY(JFrame owner) {
+    public CreateWindowXY(JFrame owner, boolean fct_type) {
         super(owner, "Create Tabulated Function", true);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -43,6 +41,8 @@ public class CreateWindowXY extends JDialog {
         setLayout(new BorderLayout());
 
         setXYStatus(false);
+
+        factory_type = fct_type;
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new FlowLayout());
@@ -62,19 +62,11 @@ public class CreateWindowXY extends JDialog {
                 DefaultTableModel model = (DefaultTableModel) pointsTable.getModel();
                 model.setRowCount(0);
                 model.setColumnIdentifiers(new String[]{"X", "Y"});
-                try {
-                    int numPoints = Integer.parseInt(numPointsField.getText());
-                    if (numPoints > 2) {
-                        for (int i = 0; i < numPoints; i++) {
-                            model.addRow(new Object[]{"", ""});
-                        }
-                        pointsTable.setModel(model);
-                    } else {
-                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
-                    }
-                } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                int numPoints = Integer.parseInt(numPointsField.getText());
+                for (int i = 0; i < numPoints; i++) {
+                    model.addRow(new Object[]{"", ""});
                 }
+                pointsTable.setModel(model);
             }
         });
 
@@ -95,24 +87,19 @@ public class CreateWindowXY extends JDialog {
                 DefaultTableModel model = (DefaultTableModel) pointsTable.getModel();
                 double[] xValues = new double[pointsTable.getRowCount()];
                 double[] yValues = new double[pointsTable.getRowCount()];
-                try {
-                    for (int i = 0; i < model.getRowCount(); i++) {
-                        xValues[i] = Double.parseDouble(model.getValueAt(i, 0).toString());
-                        yValues[i] = Double.parseDouble(model.getValueAt(i, 1).toString());
-                    }
-                    if (!SettingsWindow.getTypeOfFabric()) {
-                        factory = new ArrayTabulatedFunctionFactory();
-                    } else {
-                        factory = new LinkedListTabulatedFunctionFactory();
-                    }
-                    function = factory.create(xValues, yValues);
-                    setVisible(false);
-                    NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
-                } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
-                }catch (ArrayIsNotSortedException er){
-                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    xValues[i] = Double.parseDouble(model.getValueAt(i, 0).toString());
+                    yValues[i] = Double.parseDouble(model.getValueAt(i, 1).toString());
                 }
+                if (!factory_type) {
+                    factory = new ArrayTabulatedFunctionFactory();
+                }
+                else {
+                    factory = new LinkedListTabulatedFunctionFactory();
+                }
+                function = factory.create(xValues, yValues);
+                setVisible(false);
+                NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
             }
         });
 

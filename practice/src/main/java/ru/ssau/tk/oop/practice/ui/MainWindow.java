@@ -86,7 +86,7 @@ public class MainWindow extends JFrame {
         createTabulatedFunctionXY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateWindowXY create_window_xy =  new CreateWindowXY(mainFrame);
+                CreateWindowXY create_window_xy = new CreateWindowXY(mainFrame, SettingsWindow.getTypeOfFabric());
                 if (create_window_xy.getXYStatus()) {
                     list_of_functions.add(create_window_xy.getTabulatedFunction());
                     updateTable(create_window_xy.getTabulatedFunction(), "Tabulated Function");
@@ -97,7 +97,7 @@ public class MainWindow extends JFrame {
         createTabulatedFunctionMath.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateWindowMath create_window_math = new CreateWindowMath(mainFrame);
+                CreateWindowMath create_window_math = new CreateWindowMath(mainFrame, SettingsWindow.getTypeOfFabric());
                 if (create_window_math.getMathStatus()) {
                     list_of_functions.add(create_window_math.getMathFunction());
                     updateTable(create_window_math.getMathFunction(), create_window_math.getFunctionName());
@@ -112,8 +112,7 @@ public class MainWindow extends JFrame {
                 File file = fileChooser.getSelectedFile();
                 if (!SettingsWindow.getTypeOfFabric()) {
                     factory = new ArrayTabulatedFunctionFactory();
-                }
-                else {
+                } else {
                     factory = new LinkedListTabulatedFunctionFactory();
                 }
                 try {
@@ -157,6 +156,13 @@ public class MainWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DifOperationWindow(mainFrame, MainWindow.getList_of_functions(), SettingsWindow.getTypeOfFabric());
+            }
+        });
+
+        mathOperation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MathOperationsWindow(mainFrame, MainWindow.getList_of_functions(), SettingsWindow.getTypeOfFabric());
             }
         });
 

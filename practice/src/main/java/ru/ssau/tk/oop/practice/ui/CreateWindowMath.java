@@ -8,21 +8,23 @@ import java.awt.event.*;
 
 import java.util.*;
 
-import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.oop.practice.functions.*;
+import ru.ssau.tk.oop.practice.functions.factory.ArrayTabulatedFunctionFactory;
+import ru.ssau.tk.oop.practice.functions.factory.LinkedListTabulatedFunctionFactory;
+import ru.ssau.tk.oop.practice.functions.factory.TabulatedFunctionFactory;
 
 public class CreateWindowMath extends JDialog {
 
     private static TabulatedFunction function; //
+    private boolean factory_type;
+    private static TabulatedFunctionFactory factory;
     private static String functionName;
     private static boolean status;
     private HashMap<String, MathFunction> mapOfFunctions; //
 
     public static TabulatedFunction getMathFunction() { //
         return function;
-    }
-
-    ;
+    };
 
     public static String getFunctionName() {
         return functionName;
@@ -36,7 +38,7 @@ public class CreateWindowMath extends JDialog {
         this.status = status;
     }
 
-    public CreateWindowMath(JFrame owner) {
+    public CreateWindowMath(JFrame owner, boolean fct_type) {
         super(owner, "Create Tabulated Function", true);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -44,6 +46,8 @@ public class CreateWindowMath extends JDialog {
         setLayout(new BorderLayout());
 
         setMathStatus(false);
+
+        factory_type = fct_type;
 
         JPanel functions = new JPanel();
         functions.setLayout(new FlowLayout());
@@ -104,25 +108,18 @@ public class CreateWindowMath extends JDialog {
                 setMathStatus(true);
                 functionName = arrayOfFunctions.getSelectedItem().toString();
                 MathFunction selectedFunction = mapOfFunctions.get(arrayOfFunctions.getSelectedItem());
-                try {
-                    double xFrom = Double.parseDouble(xFromTextField.getText());
-                    double xTo = Double.parseDouble(xToTextField.getText());
-                    int count = Integer.parseInt(countTextField.getText());
-                    if (count > 2) {
-                        if (!SettingsWindow.getTypeOfFabric()) {
-                            function = new ArrayTabulatedFunction(selectedFunction, xFrom, xTo, count);
-                        } else {
-                            function = new LinkedListTabulatedFunction(selectedFunction, xFrom, xTo, count);
-                        }
-                        setVisible(false);
-                        NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
-                    } else {
-                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
-                    }
-                } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
+                double xFrom = Double.parseDouble(xFromTextField.getText());
+                double xTo = Double.parseDouble(xToTextField.getText());
+                int count = Integer.parseInt(countTextField.getText());
+                if (!factory_type) {
+                    factory = new ArrayTabulatedFunctionFactory();
                 }
-
+                else {
+                    factory = new LinkedListTabulatedFunctionFactory();
+                }
+                function = factory.create(selectedFunction, xFrom, xTo, count);
+                setVisible(false);
+                NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
             }
         });
 
