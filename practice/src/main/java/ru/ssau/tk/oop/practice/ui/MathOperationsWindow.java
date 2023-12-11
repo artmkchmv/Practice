@@ -1,6 +1,7 @@
 package ru.ssau.tk.oop.practice.ui;
 
 import javafx.scene.control.Tab;
+import ru.ssau.tk.oop.practice.exceptions.InconsistentFunctionsException;
 import ru.ssau.tk.oop.practice.functions.TabulatedFunction;
 import ru.ssau.tk.oop.practice.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.oop.practice.functions.factory.LinkedListTabulatedFunctionFactory;
@@ -183,8 +184,8 @@ public class MathOperationsWindow extends JDialog {
         operationResultTable = new JTable(operationResultTableModel);
         operationResultPanel.add(operationResultTable);
 
-        JScrollPane operationDescriptionScrollPane = new JScrollPane(operationResultTable);
-        operationResultPanel.add(operationDescriptionScrollPane);
+        JScrollPane operationScrollPane = new JScrollPane(operationResultTable);
+        operationResultPanel.add(operationScrollPane);
 
         JPanel operationDescriptionPanel = new JPanel();
         operationDescriptionPanel.setLayout(new BorderLayout());
@@ -193,8 +194,11 @@ public class MathOperationsWindow extends JDialog {
         operationDescriptionTextArea.setEditable(false);
         operationDescriptionTextArea.setLineWrap(true);
         operationDescriptionTextArea.setWrapStyleWord(true);
-
         operationDescriptionPanel.add(operationDescriptionTextArea, BorderLayout.CENTER);
+
+        JScrollPane operationDescriptionScrollPane = new JScrollPane(operationDescriptionTextArea);
+        operationDescriptionPanel.add(operationDescriptionScrollPane, BorderLayout.CENTER);
+        operationDescriptionTextArea.setRows(operationDescriptionTextArea.getLineCount());
 
         list_of_results = new LinkedList<TabulatedFunction>();
 
@@ -218,13 +222,19 @@ public class MathOperationsWindow extends JDialog {
                     if (Objects.equals(operationName, operationNames[2])) {
                         resultFunction = operation.Multiplication(selectedFunction1, selectedFunction2);
                     }
-                    if (Objects.equals(operationName, operationNames[3])) {
-                        resultFunction = operation.Division(selectedFunction1, selectedFunction2);
+                    try {
+                        if (Objects.equals(operationName, operationNames[3])) {
+                            resultFunction = operation.Division(selectedFunction1, selectedFunction2);
+                        }
+                    } catch (ArithmeticException ex) {
+                        ErrorDivZeroWindow errorDivZeroWindow = new ErrorDivZeroWindow(MathOperationsWindow.this);
                     }
                     list_of_results.add(resultFunction);
                     updateTable(resultFunction, "Tabulated Function (Result of " + operationName + ")");
                 } catch (NullPointerException ex) {
                     ErrorNullPointerWindow nullPointerWindow = new ErrorNullPointerWindow(MathOperationsWindow.this);
+                } catch (InconsistentFunctionsException ex) {
+                    ErrorLengthWindow errorLengthWindow = new ErrorLengthWindow(MathOperationsWindow.this);
                 }
             }
         });
@@ -272,6 +282,8 @@ public class MathOperationsWindow extends JDialog {
                 }
             }
         });
+
+        operationDescriptionPanel.setPreferredSize(new Dimension(WIDTH, 100));
 
         add(setPanel, BorderLayout.NORTH);
         add(operationResultPanel, BorderLayout.CENTER);

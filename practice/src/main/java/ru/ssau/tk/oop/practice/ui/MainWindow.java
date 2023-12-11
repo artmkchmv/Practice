@@ -1,10 +1,5 @@
 package ru.ssau.tk.oop.practice.ui;
 
-import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
-import ru.ssau.tk.oop.practice.functions.*;
-
-import ru.ssau.tk.oop.practice.functions.factory.*;
-
 import javax.swing.*;
 
 import javax.swing.table.*;
@@ -20,6 +15,12 @@ import java.util.*;
 import static ru.ssau.tk.oop.practice.io.FunctionsIO.readTabulatedFunction;
 
 import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
+
+import ru.ssau.tk.oop.practice.exceptions.*;
+
+import ru.ssau.tk.oop.practice.functions.*;
+
+import ru.ssau.tk.oop.practice.functions.factory.*;
 
 public class MainWindow extends JFrame {
     private JFrame mainFrame;
@@ -174,6 +175,7 @@ public class MainWindow extends JFrame {
         functionDescriptionTextArea.setEditable(false);
         functionDescriptionTextArea.setLineWrap(true);
         functionDescriptionTextArea.setWrapStyleWord(true);
+
         functionDescriptionPanel.add(functionDescriptionTextArea, BorderLayout.CENTER);
 
         JScrollPane functionDescriptionScrollPane = new JScrollPane(functionDescriptionTextArea);

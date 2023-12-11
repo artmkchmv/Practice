@@ -108,8 +108,11 @@ public class DifOperationWindow extends JDialog {
         derivativeDescriptionTextArea.setEditable(false);
         derivativeDescriptionTextArea.setLineWrap(true);
         derivativeDescriptionTextArea.setWrapStyleWord(true);
-
         derivativeDescriptionPanel.add(derivativeDescriptionTextArea, BorderLayout.CENTER);
+
+        JScrollPane derivativeDescriptionScrollPane = new JScrollPane(derivativeDescriptionTextArea);
+        derivativeDescriptionPanel.add(derivativeDescriptionScrollPane, BorderLayout.CENTER);
+        derivativeDescriptionTextArea.setRows(derivativeDescriptionTextArea.getLineCount());
 
         list_of_derivative = new LinkedList<TabulatedFunction>();
 
@@ -176,6 +179,8 @@ public class DifOperationWindow extends JDialog {
                 derivativeDescriptionTextArea.setText(functionString.toString());
             }
         });
+
+        derivativeDescriptionPanel.setPreferredSize(new Dimension(WIDTH, 100));
 
         add(functionsPanel, BorderLayout.NORTH);
         add(resultPanel, BorderLayout.CENTER);
