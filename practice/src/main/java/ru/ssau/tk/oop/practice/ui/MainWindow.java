@@ -121,7 +121,7 @@ public class MainWindow extends JFrame {
                     list_of_functions.add(readTabulatedFunction(new BufferedReader(new FileReader(file.getAbsolutePath())), factory));
                     updateTable(readTabulatedFunction(new BufferedReader(new FileReader(file.getAbsolutePath())), factory), "Tabulated Function");
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    ErrorIOWindow errorIOWindow = new ErrorIOWindow(mainFrame);
                 } catch (ArrayIsNotSortedException ex) {
                     ErrorSortedJFrameWindow errorSortedWindow = new ErrorSortedJFrameWindow(mainFrame);
                 }
@@ -140,7 +140,7 @@ public class MainWindow extends JFrame {
                     try {
                         writeTabulatedFunction(new BufferedWriter(new FileWriter(file.getAbsolutePath())), selectedFunction);
                     } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                        ErrorIOWindow errorIOWindow = new ErrorIOWindow(mainFrame);
                     }
                 }
             } else {

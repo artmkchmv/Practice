@@ -207,8 +207,7 @@ public class MathOperationsWindow extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if (!factory_type) {
                     factory = new ArrayTabulatedFunctionFactory();
-                }
-                else {
+                } else {
                     factory = new LinkedListTabulatedFunctionFactory();
                 }
                 try {
@@ -222,15 +221,13 @@ public class MathOperationsWindow extends JDialog {
                     if (Objects.equals(operationName, operationNames[2])) {
                         resultFunction = operation.Multiplication(selectedFunction1, selectedFunction2);
                     }
-                    try {
-                        if (Objects.equals(operationName, operationNames[3])) {
-                            resultFunction = operation.Division(selectedFunction1, selectedFunction2);
-                        }
-                    } catch (ArithmeticException ex) {
-                        ErrorDivZeroWindow errorDivZeroWindow = new ErrorDivZeroWindow(MathOperationsWindow.this);
+                    if (Objects.equals(operationName, operationNames[3])) {
+                        resultFunction = operation.Division(selectedFunction1, selectedFunction2);
                     }
                     list_of_results.add(resultFunction);
                     updateTable(resultFunction, "Tabulated Function (Result of " + operationName + ")");
+                } catch (ArithmeticException ex) {
+                    ErrorDivZeroWindow errorDivZeroWindow = new ErrorDivZeroWindow(MathOperationsWindow.this);
                 } catch (NullPointerException ex) {
                     ErrorNullPointerWindow nullPointerWindow = new ErrorNullPointerWindow(MathOperationsWindow.this);
                 } catch (InconsistentFunctionsException ex) {
