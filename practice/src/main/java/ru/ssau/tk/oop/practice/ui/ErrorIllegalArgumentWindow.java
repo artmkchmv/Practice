@@ -1,10 +1,11 @@
 package ru.ssau.tk.oop.practice.ui;
 
 import javax.swing.*;
+
 import java.awt.*;
 
-public class ErrorIlleagalArgumentWindow extends JDialog {
-    public ErrorIlleagalArgumentWindow(JFrame owner) {
+public class ErrorIllegalArgumentWindow extends JDialog {
+    public ErrorIllegalArgumentWindow(JFrame owner) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);

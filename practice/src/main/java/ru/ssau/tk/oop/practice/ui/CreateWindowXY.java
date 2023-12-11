@@ -72,7 +72,7 @@ public class CreateWindowXY extends JDialog {
                         }
                         pointsTable.setModel(model);
                     } else {
-                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
+                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(owner);
                     }
                 } catch (NumberFormatException er) {
                     ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);

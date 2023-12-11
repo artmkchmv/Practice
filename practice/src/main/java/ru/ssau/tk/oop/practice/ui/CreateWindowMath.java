@@ -121,7 +121,7 @@ public class CreateWindowMath extends JDialog {
                         setVisible(false);
                         NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
                     } else {
-                        ErrorIlleagalArgumentWindow errorIlleagalArgumentWindow = new ErrorIlleagalArgumentWindow(owner);
+                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(owner);
                     }
                 } catch (NumberFormatException err) {
                     ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(owner);
