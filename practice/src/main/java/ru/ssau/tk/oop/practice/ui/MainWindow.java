@@ -21,7 +21,7 @@ import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
 
 public class MainWindow extends JFrame {
     private JFrame mainFrame;
-    private LinkedList<MathFunction> list_of_functions = new LinkedList<>();
+    private static LinkedList<TabulatedFunction> list_of_functions = new LinkedList<TabulatedFunction>(); //
     private DefaultTableModel functionsTableModel;
     private JTable functionsTable;
     private TabulatedFunctionFactory factory;
@@ -36,6 +36,10 @@ public class MainWindow extends JFrame {
         public boolean isCellEditable(int row, int column) {
             return false;
         }
+    }
+
+    public static LinkedList<TabulatedFunction> getList_of_functions() { //
+        return list_of_functions;
     }
 
     public MainWindow() {
@@ -151,11 +155,9 @@ public class MainWindow extends JFrame {
         differentiationOperation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new difOperationWindow(mainFrame);
+                new difOperationWindow(mainFrame, MainWindow.getList_of_functions(), SettingsWindow.getTypeOfFabric());
             }
         });
-
-        final int[] selectedRow = {-1};
 
         JPanel functionDescriptionPanel = new JPanel(new BorderLayout());
         JTextArea functionDescriptionTextArea = new JTextArea();
@@ -167,6 +169,8 @@ public class MainWindow extends JFrame {
         JScrollPane functionDescriptionScrollPane = new JScrollPane(functionDescriptionTextArea);
         functionDescriptionPanel.add(functionDescriptionScrollPane, BorderLayout.CENTER);
         functionDescriptionTextArea.setRows(functionDescriptionTextArea.getLineCount());
+
+        final int[] selectedRow = {-1};
 
         functionsTable.getSelectionModel().addListSelectionListener(e -> {
             int newRow = functionsTable.getSelectedRow();
@@ -197,8 +201,8 @@ public class MainWindow extends JFrame {
         mainFrame.setVisible(true);
     }
 
-    private void updateTable(MathFunction function, String name) {
-        functionsTableModel.addRow(new String[]{name , function.getClass().getSimpleName()});
+    private void updateTable(TabulatedFunction function, String name) {
+        functionsTableModel.addRow(new String[]{name, function.getClass().getSimpleName()});
     }
 
     public static void main(String[] args) {

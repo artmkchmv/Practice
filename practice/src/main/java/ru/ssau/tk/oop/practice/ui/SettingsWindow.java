@@ -69,8 +69,4 @@ public class SettingsWindow extends JDialog {
 
         setVisible(true);
     }
-
-/*    public static void main(String[] args) {
-        SettingsWindow settings_window = new SettingsWindow();
-    }*/
 }

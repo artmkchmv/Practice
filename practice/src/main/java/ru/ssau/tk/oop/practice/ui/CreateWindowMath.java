@@ -12,12 +12,12 @@ import ru.ssau.tk.oop.practice.functions.*;
 
 public class CreateWindowMath extends JDialog {
 
-    private static MathFunction function;
+    private static TabulatedFunction function; //
     private static String functionName;
     private static boolean status;
-    private HashMap<String, MathFunction> mapOfFunctions;
+    private HashMap<String, MathFunction> mapOfFunctions; //
 
-    public static MathFunction getMathFunction() {
+    public static TabulatedFunction getMathFunction() { //
         return function;
     };
 
