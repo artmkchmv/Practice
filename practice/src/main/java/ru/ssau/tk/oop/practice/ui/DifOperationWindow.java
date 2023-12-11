@@ -16,7 +16,7 @@ import java.awt.event.*;
 
 import java.util.*;
 
-public class difOperationWindow extends JDialog {
+public class DifOperationWindow extends JDialog {
     private TabulatedFunction selectedFunction;
     private TabulatedFunction derivative;
     private boolean factory_type;
@@ -38,7 +38,7 @@ public class difOperationWindow extends JDialog {
         }
     }
 
-    public difOperationWindow(JFrame owner, LinkedList<TabulatedFunction> lst, boolean fct_type) { //
+    public DifOperationWindow(JFrame owner, LinkedList<TabulatedFunction> lst, boolean fct_type) { //
         super(owner, "Differentiation", true);
         setSize(600, 600);
         setLocationRelativeTo(null);

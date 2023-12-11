@@ -17,6 +17,7 @@ import java.io.*;
 import java.util.*;
 
 import static ru.ssau.tk.oop.practice.io.FunctionsIO.readTabulatedFunction;
+
 import static ru.ssau.tk.oop.practice.io.FunctionsIO.writeTabulatedFunction;
 
 public class MainWindow extends JFrame {
@@ -155,7 +156,7 @@ public class MainWindow extends JFrame {
         differentiationOperation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new difOperationWindow(mainFrame, MainWindow.getList_of_functions(), SettingsWindow.getTypeOfFabric());
+                new DifOperationWindow(mainFrame, MainWindow.getList_of_functions(), SettingsWindow.getTypeOfFabric());
             }
         });
 

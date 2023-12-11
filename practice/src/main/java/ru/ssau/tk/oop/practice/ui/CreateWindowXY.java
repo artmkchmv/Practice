@@ -60,15 +60,10 @@ public class CreateWindowXY extends JDialog {
                 model.setRowCount(0);
                 model.setColumnIdentifiers(new String[]{"X", "Y"});
                 int numPoints = Integer.parseInt(numPointsField.getText());
-                if (numPoints > 2) {
-                    for (int i = 0; i < numPoints; i++) {
-                        model.addRow(new Object[]{"", ""});
-                    }
-                    pointsTable.setModel(model);
+                for (int i = 0; i < numPoints; i++) {
+                    model.addRow(new Object[]{"", ""});
                 }
-                else {
-                    new ErrorWindow(CreateWindowXY.this);
-                }
+                pointsTable.setModel(model);
             }
         });
 
