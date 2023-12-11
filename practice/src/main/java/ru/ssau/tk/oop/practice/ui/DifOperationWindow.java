@@ -1,5 +1,6 @@
 package ru.ssau.tk.oop.practice.ui;
 
+import ru.ssau.tk.oop.practice.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.oop.practice.functions.*;
 
 import ru.ssau.tk.oop.practice.functions.factory.*;
@@ -134,16 +135,19 @@ public class DifOperationWindow extends JDialog {
         difOperationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!factory_type) {
-                    factory = new ArrayTabulatedFunctionFactory();
+                try {
+                    if (!factory_type) {
+                        factory = new ArrayTabulatedFunctionFactory();
+                    } else {
+                        factory = new LinkedListTabulatedFunctionFactory();
+                    }
+                    differentialOperator = new TabulatedDifferentialOperator();
+                    differentialOperator.setFactory(factory);
+                    derivative = differentialOperator.derive(selectedFunction);
+                    updateTable(derivative, "Derivative Tabulated Function");
+                }catch (ArrayIsNotSortedException er){
+                    ErrorSortedWindow errorSortedWindow = new ErrorSortedWindow(owner);
                 }
-                else {
-                    factory = new LinkedListTabulatedFunctionFactory();
-                }
-                differentialOperator = new TabulatedDifferentialOperator();
-                differentialOperator.setFactory(factory);
-                derivative = differentialOperator.derive(selectedFunction);
-                updateTable(derivative, "Derivative Tabulated Function");
             }
         });
 
