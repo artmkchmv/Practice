@@ -120,10 +120,11 @@ public class MainWindow extends JFrame {
                 try {
                     list_of_functions.add(readTabulatedFunction(new BufferedReader(new FileReader(file.getAbsolutePath())), factory));
                     updateTable(readTabulatedFunction(new BufferedReader(new FileReader(file.getAbsolutePath())), factory), "Tabulated Function");
+                    NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 0);
                 } catch (IOException ex) {
-                    ErrorIOWindow errorIOWindow = new ErrorIOWindow(mainFrame);
+                    NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 4);
                 } catch (ArrayIsNotSortedException ex) {
-                    ErrorSortedJFrameWindow errorSortedWindow = new ErrorSortedJFrameWindow(mainFrame);
+                    NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 7);
                 }
             }
         });
@@ -131,20 +132,20 @@ public class MainWindow extends JFrame {
         saveTabulatedFunction.addActionListener(e -> {
             int selectedRow = functionsTable.getSelectedRow();
             if (selectedRow != -1) {
-                TabulatedFunction selectedFunction = (TabulatedFunction) list_of_functions.get(selectedRow);
-
+                TabulatedFunction selectedFunction = list_of_functions.get(selectedRow);
                 JFileChooser fileChooser = new JFileChooser();
                 int returnVal = fileChooser.showSaveDialog(mainFrame);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
                     try {
                         writeTabulatedFunction(new BufferedWriter(new FileWriter(file.getAbsolutePath())), selectedFunction);
+                        NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 0);
                     } catch (IOException ex) {
-                        ErrorIOWindow errorIOWindow = new ErrorIOWindow(mainFrame);
+                        NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 4);
                     }
                 }
             } else {
-                ErrorCreateJFrameWindow errorWindow = new ErrorCreateJFrameWindow(mainFrame);
+                NoticeJFrameWindow noticeJFrameWindow = new NoticeJFrameWindow(mainFrame, 1);
             }
         });
 

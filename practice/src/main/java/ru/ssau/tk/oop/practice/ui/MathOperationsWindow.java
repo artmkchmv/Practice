@@ -226,12 +226,12 @@ public class MathOperationsWindow extends JDialog {
                     }
                     list_of_results.add(resultFunction);
                     updateTable(resultFunction, "Tabulated Function (Result of " + operationName + ")");
-                } catch (ArithmeticException ex) {
-                    ErrorDivZeroWindow errorDivZeroWindow = new ErrorDivZeroWindow(MathOperationsWindow.this);
                 } catch (NullPointerException ex) {
-                    ErrorNullPointerWindow nullPointerWindow = new ErrorNullPointerWindow(MathOperationsWindow.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 1);
                 } catch (InconsistentFunctionsException ex) {
-                    ErrorLengthWindow errorLengthWindow = new ErrorLengthWindow(MathOperationsWindow.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 5);
+                } catch (ArithmeticException ex) {
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 2);
                 }
             }
         });
@@ -270,12 +270,13 @@ public class MathOperationsWindow extends JDialog {
                         File file = fileChooser.getSelectedFile();
                         try {
                             writeTabulatedFunction(new BufferedWriter(new FileWriter(file.getAbsolutePath())), resultFunction);
+                            NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 0);
                         } catch (IOException ex) {
-                            throw new RuntimeException(ex);
+                            NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 4);
                         }
                     }
                 } else {
-                    ErrorCreateJDialogWindow errorWindow = new ErrorCreateJDialogWindow(MathOperationsWindow.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(MathOperationsWindow.this, 1);
                 }
             }
         });

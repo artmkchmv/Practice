@@ -45,7 +45,7 @@ public class SettingsWindow extends JDialog {
                 if(arrayButton.isSelected()) {
                     type_of_fabric = false;
                 }
-                NoticeWindow notice_window = new NoticeWindow(SettingsWindow.this);
+                NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(SettingsWindow.this, 0);
             }
         });
 
@@ -55,7 +55,7 @@ public class SettingsWindow extends JDialog {
                 if(linkedListButton.isSelected()) {
                     type_of_fabric = true;
                 }
-                NoticeWindow notice_window = new NoticeWindow(SettingsWindow.this);
+                NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(SettingsWindow.this, 0);
             }
         });
 

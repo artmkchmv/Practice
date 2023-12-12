@@ -72,10 +72,10 @@ public class CreateWindowXY extends JDialog {
                         }
                         pointsTable.setModel(model);
                     } else {
-                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(CreateWindowXY.this);
+                        NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowXY.this, 3);
                     }
                 } catch (NumberFormatException er) {
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowXY.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowXY.this, 6);
                 }
             }
         });
@@ -110,13 +110,13 @@ public class CreateWindowXY extends JDialog {
                     }
                     function = factory.create(xValues, yValues);
                     setVisible(false);
-                    NoticeWindow notice_window = new NoticeWindow(CreateWindowXY.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowXY.this, 0);
                 } catch (NumberFormatException er) {
                     setXYStatus(false);
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowXY.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowXY.this, 6);
                 } catch (ArrayIsNotSortedException er) {
                     setXYStatus(false);
-                    ErrorSortedJDialogWindow errorSortedWindow = new ErrorSortedJDialogWindow(CreateWindowXY.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowXY.this, 7);
                 }
             }
         });

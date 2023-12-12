@@ -4,8 +4,9 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class NoticeWindow extends JDialog {
-    public NoticeWindow(JDialog owner) {
+public class NoticeJDialogWindow extends JDialog {
+
+    public NoticeJDialogWindow(JDialog owner, int ex) {
         super(owner, "", true);
         setSize(200, 100);
         setLocationRelativeTo(null);
@@ -13,10 +14,21 @@ public class NoticeWindow extends JDialog {
         setLayout(new BorderLayout());
         setResizable(false);
 
+        String[] errorMessages = {
+                "Successfully!", //0
+                "Function not found!", //1
+                "Division by zero!", //2
+                "Invalid value!", //3
+                "Input/Output error!", //4
+                "Different lengths!", //5
+                "Invalid character!", //6
+                "Table not sorted!" //7
+        };
+
         JPanel noticePanel = new JPanel();
         noticePanel.setLayout(new FlowLayout());
 
-        JLabel noticeWindow = new JLabel("Successfully!");
+        JLabel noticeWindow = new JLabel(errorMessages[ex]);
         noticePanel.add(noticeWindow);
 
         JPanel okPanel = new JPanel();

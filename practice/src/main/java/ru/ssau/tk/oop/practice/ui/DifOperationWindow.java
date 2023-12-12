@@ -130,8 +130,10 @@ public class DifOperationWindow extends JDialog {
                     derivative = differentialOperator.derive2(selectedFunction);
                     list_of_derivative.add(derivative);
                     updateTable(derivative, "Derivative Tabulated Function");
+                } catch (NullPointerException er) {
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(DifOperationWindow.this, 1);
                 } catch (ArrayIsNotSortedException er) {
-                    ErrorSortedJDialogWindow errorSortedWindow = new ErrorSortedJDialogWindow(DifOperationWindow.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(DifOperationWindow.this, 7);
                 }
             }
         });
@@ -147,12 +149,13 @@ public class DifOperationWindow extends JDialog {
                         File file = fileChooser.getSelectedFile();
                         try {
                             writeTabulatedFunction(new BufferedWriter(new FileWriter(file.getAbsolutePath())), derivative);
+                            NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(DifOperationWindow.this, 0);
                         } catch (IOException ex) {
-                            throw new RuntimeException(ex);
+                            NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(DifOperationWindow.this, 4);
                         }
                     }
                 } else {
-                    ErrorCreateJDialogWindow errorWindow = new ErrorCreateJDialogWindow(DifOperationWindow.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(DifOperationWindow.this, 1);
                 }
             }
         });

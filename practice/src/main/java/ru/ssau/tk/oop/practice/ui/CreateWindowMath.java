@@ -119,13 +119,13 @@ public class CreateWindowMath extends JDialog {
                         }
                         function = factory.create(selectedFunction, xFrom, xTo, count);
                         setVisible(false);
-                        NoticeWindow notice_window = new NoticeWindow(CreateWindowMath.this);
+                        NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowMath.this, 0);
                     } else {
-                        ErrorIllegalArgumentWindow errorIlleagalArgumentWindow = new ErrorIllegalArgumentWindow(CreateWindowMath.this);
+                        NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowMath.this, 3);
                     }
                 } catch (NumberFormatException err) {
                     setMathStatus(false);
-                    ErrorNumFormatWindow errorNumFormatWindow = new ErrorNumFormatWindow(CreateWindowMath.this);
+                    NoticeJDialogWindow noticeJDialogWindow = new NoticeJDialogWindow(CreateWindowMath.this, 6);
                 }
             }
         });
